@@ -9,3 +9,5 @@ scrape_configs:
   - job_name: 'walrus_storage_node'
     static_configs:
       - targets: ['localhost:9184']
+        labels:
+          service: 'storage_node'

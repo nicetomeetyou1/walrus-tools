@@ -72,9 +72,7 @@
                 "orientation": "auto",
                 "percentChangeColorMode": "standard",
                 "reduceOptions": {
-                    "calcs": [
-                        "lastNotNull"
-                    ],
+                    "calcs": ["lastNotNull"],
                     "fields": "",
                     "values": false
                 },
@@ -91,19 +89,21 @@
                     "type": "prometheus",
                     "uid": "be65m7mkyeh34c"
                 },
-                "editorMode": "code",
-                "expr": "walrus_build_info",
+                "disableTextWrap": false,
+                "editorMode": "builder",
+                "expr": "walrus_build_info{service=\"storage_node\"}",
+                "fullMetaSearch": false,
+                "includeNullMetadata": true,
                 "legendFormat": "__auto",
                 "range": true,
-                "refId": "A"
+                "refId": "A",
+                "useBackend": false
             }],
             "title": "Build Version",
             "transformations": [{
                 "id": "labelsToFields",
                 "options": {
-                    "keepLabels": [
-                        "version"
-                    ],
+                    "keepLabels": ["version"],
                     "valueLabel": "version"
                 }
             }],
@@ -150,9 +150,7 @@
                 "orientation": "auto",
                 "percentChangeColorMode": "standard",
                 "reduceOptions": {
-                    "calcs": [
-                        "lastNotNull"
-                    ],
+                    "calcs": ["lastNotNull"],
                     "fields": "",
                     "values": false
                 },
@@ -170,7 +168,7 @@
                     "uid": "be65m7mkyeh34c"
                 },
                 "editorMode": "code",
-                "expr": "uptime",
+                "expr": "uptime{service=\"storage_node\"}",
                 "legendFormat": "__auto",
                 "range": true,
                 "refId": "A"
@@ -179,9 +177,7 @@
             "transformations": [{
                 "id": "labelsToFields",
                 "options": {
-                    "keepLabels": [
-                        "chain_identifier"
-                    ],
+                    "keepLabels": ["chain_identifier"],
                     "valueLabel": "chain_identifier"
                 }
             }],
@@ -231,9 +227,7 @@
                 "orientation": "horizontal",
                 "percentChangeColorMode": "standard",
                 "reduceOptions": {
-                    "calcs": [
-                        "lastNotNull"
-                    ],
+                    "calcs": ["lastNotNull"],
                     "fields": "",
                     "values": false
                 },
@@ -248,7 +242,7 @@
                     "uid": "be65m7mkyeh34c"
                 },
                 "editorMode": "code",
-                "expr": "max(walrus_current_epoch)",
+                "expr": "max(walrus_current_epoch{service=\"storage_node\"})",
                 "legendFormat": "",
                 "range": true,
                 "refId": "A"
@@ -303,9 +297,7 @@
                 "orientation": "horizontal",
                 "percentChangeColorMode": "standard",
                 "reduceOptions": {
-                    "calcs": [
-                        "lastNotNull"
-                    ],
+                    "calcs": ["lastNotNull"],
                     "fields": "",
                     "values": false
                 },
@@ -321,7 +313,7 @@
                     "uid": "be65m7mkyeh34c"
                 },
                 "editorMode": "code",
-                "expr": "sum(uptime) / 86400",
+                "expr": "uptime{service=\"storage_node\"} / 86400",
                 "legendFormat": "",
                 "range": true,
                 "refId": "A"
@@ -425,9 +417,7 @@
                     "showLegend": true
                 },
                 "showPoints": "always",
-                "timezone": [
-                    "browser"
-                ],
+                "timezone": ["browser"],
                 "tooltip": {
                     "mode": "single",
                     "sort": "none"
@@ -440,8 +430,9 @@
                     "uid": "be65m7mkyeh34c"
                 },
                 "editorMode": "code",
-                "expr": "walrus_current_epoch_state",
+                "expr": "walrus_current_epoch_state{service=\"storage_node\"}",
                 "legendFormat": "{{state}}",
+                "range": true,
                 "refId": "A"
             }],
             "title": "Epoch State Timeline",
@@ -545,7 +536,7 @@
             "targets": [{
                 "editorMode": "code",
                 "exemplar": false,
-                "expr": "rate(uptime[1m])",
+                "expr": "rate(uptime{service=\"storage_node\"}[1m])",
                 "interval": "",
                 "legendFormat": "{{process}}",
                 "range": true,
@@ -613,9 +604,7 @@
                 "orientation": "horizontal",
                 "percentChangeColorMode": "standard",
                 "reduceOptions": {
-                    "calcs": [
-                        "lastNotNull"
-                    ],
+                    "calcs": ["lastNotNull"],
                     "fields": "",
                     "values": false
                 },
@@ -630,7 +619,7 @@
                     "uid": "be65m7mkyeh34c"
                 },
                 "editorMode": "code",
-                "expr": "max(checkpoint_downloader_checkpoint_lag)",
+                "expr": "max(checkpoint_downloader_checkpoint_lag{service=\"storage_node\"})",
                 "legendFormat": "",
                 "range": true,
                 "refId": "A"
@@ -680,9 +669,7 @@
                 "orientation": "horizontal",
                 "percentChangeColorMode": "standard",
                 "reduceOptions": {
-                    "calcs": [
-                        "lastNotNull"
-                    ],
+                    "calcs": ["lastNotNull"],
                     "fields": "",
                     "values": false
                 },
@@ -697,7 +684,7 @@
                     "uid": "be65m7mkyeh34c"
                 },
                 "editorMode": "code",
-                "expr": "checkpoint_downloader_num_workers",
+                "expr": "checkpoint_downloader_num_workers{service=\"storage_node\"}",
                 "legendFormat": "",
                 "range": true,
                 "refId": "A"
@@ -743,9 +730,7 @@
                 "orientation": "horizontal",
                 "percentChangeColorMode": "standard",
                 "reduceOptions": {
-                    "calcs": [
-                        "lastNotNull"
-                    ],
+                    "calcs": ["lastNotNull"],
                     "fields": "",
                     "values": false
                 },
@@ -760,7 +745,7 @@
                     "uid": "be65m7mkyeh34c"
                 },
                 "editorMode": "code",
-                "expr": "sum(event_processor_total_downloaded_checkpoints)",
+                "expr": "event_processor_total_downloaded_checkpoints{service=\"storage_node\"}",
                 "legendFormat": "",
                 "range": false,
                 "refId": "A"
@@ -811,9 +796,7 @@
                 "orientation": "horizontal",
                 "percentChangeColorMode": "standard",
                 "reduceOptions": {
-                    "calcs": [
-                        "lastNotNull"
-                    ],
+                    "calcs": ["lastNotNull"],
                     "fields": "",
                     "values": false
                 },
@@ -828,7 +811,7 @@
                     "uid": "be65m7mkyeh34c"
                 },
                 "editorMode": "code",
-                "expr": "event_processor_latest_downloaded_checkpoint",
+                "expr": "event_processor_latest_downloaded_checkpoint{service=\"storage_node\"}",
                 "legendFormat": "",
                 "range": false,
                 "refId": "A"
@@ -916,9 +899,7 @@
                     "placement": "bottom",
                     "showLegend": true
                 },
-                "timezone": [
-                    "browser"
-                ],
+                "timezone": ["browser"],
                 "tooltip": {
                     "mode": "single",
                     "sort": "none"
@@ -931,7 +912,7 @@
                     "uid": "be65m7mkyeh34c"
                 },
                 "editorMode": "code",
-                "expr": "max(checkpoint_downloader_checkpoint_lag)",
+                "expr": "max(checkpoint_downloader_checkpoint_lag{service=\"storage_node\"})",
                 "legendFormat": "Latest Lag",
                 "range": true,
                 "refId": "A"
@@ -1022,7 +1003,7 @@
                     "uid": "be65m7mkyeh34c"
                 },
                 "editorMode": "code",
-                "expr": "event_processor_latest_downloaded_checkpoint",
+                "expr": "event_processor_latest_downloaded_checkpoint{service=\"storage_node\"}",
                 "legendFormat": "Latest Checkpoint",
                 "range": true,
                 "refId": "A"
@@ -1087,9 +1068,7 @@
                 "orientation": "horizontal",
                 "percentChangeColorMode": "standard",
                 "reduceOptions": {
-                    "calcs": [
-                        "lastNotNull"
-                    ],
+                    "calcs": ["lastNotNull"],
                     "fields": "",
                     "values": false
                 },
@@ -1104,7 +1083,7 @@
                     "uid": "be65m7mkyeh34c"
                 },
                 "editorMode": "code",
-                "expr": "walrus_event_cursor_progress{state=\"pending\"}",
+                "expr": "walrus_event_cursor_progress{state=\"pending\", service=\"storage_node\"}",
                 "legendFormat": "",
                 "range": true,
                 "refId": "A"
@@ -1156,9 +1135,7 @@
                 "orientation": "horizontal",
                 "percentChangeColorMode": "standard",
                 "reduceOptions": {
-                    "calcs": [
-                        "lastNotNull"
-                    ],
+                    "calcs": ["lastNotNull"],
                     "fields": "",
                     "values": false
                 },
@@ -1173,7 +1150,7 @@
                     "uid": "be65m7mkyeh34c"
                 },
                 "editorMode": "code",
-                "expr": "walrus_event_cursor_progress{state=\"persisted\"}",
+                "expr": "walrus_event_cursor_progress{state=\"persisted\", service=\"storage_node\"}",
                 "legendFormat": "",
                 "range": true,
                 "refId": "A"
@@ -1227,9 +1204,7 @@
                 "namePlacement": "auto",
                 "orientation": "horizontal",
                 "reduceOptions": {
-                    "calcs": [
-                        "lastNotNull"
-                    ],
+                    "calcs": ["lastNotNull"],
                     "fields": "",
                     "values": false
                 },
@@ -1240,8 +1215,10 @@
             },
             "pluginVersion": "11.4.0",
             "targets": [{
-                "expr": "sum by (event_type) (rate(walrus_event_process_duration_seconds_sum[5m])) / sum by (event_type) (rate(walrus_event_process_duration_seconds_count[5m]))",
+                "editorMode": "code",
+                "expr": "sum by (event_type) (rate(walrus_event_process_duration_seconds_sum{service=\"storage_node\"}[5m])) / sum by (event_type) (rate(walrus_event_process_duration_seconds_count{service=\"storage_node\"}[5m]))",
                 "legendFormat": "{{event_type}}",
+                "range": true,
                 "refId": "A"
             }],
             "title": "Average Event Processing Time",
@@ -1330,7 +1307,7 @@
                     "uid": "be65m7mkyeh34c"
                 },
                 "editorMode": "code",
-                "expr": "walrus_event_cursor_progress{state=\"persisted\"}",
+                "expr": "walrus_event_cursor_progress{state=\"persisted\", service=\"storage_node\"}",
                 "legendFormat": "Persisted Events",
                 "range": true,
                 "refId": "A"
@@ -1389,9 +1366,7 @@
                 "orientation": "horizontal",
                 "percentChangeColorMode": "standard",
                 "reduceOptions": {
-                    "calcs": [
-                        "lastNotNull"
-                    ],
+                    "calcs": ["lastNotNull"],
                     "fields": "",
                     "values": false
                 },
@@ -1402,8 +1377,9 @@
             "pluginVersion": "11.4.0",
             "targets": [{
                 "editorMode": "code",
-                "expr": "walrus_uploaded_metadata_unencoded_blob_bytes_sum",
+                "expr": "walrus_uploaded_metadata_unencoded_blob_bytes_sum{service=\"storage_node\"}",
                 "legendFormat": "",
+                "range": true,
                 "refId": "A"
             }],
             "title": "Total Metadata Blob Size Processed",
@@ -1451,9 +1427,7 @@
                 "orientation": "horizontal",
                 "percentChangeColorMode": "standard",
                 "reduceOptions": {
-                    "calcs": [
-                        "lastNotNull"
-                    ],
+                    "calcs": ["lastNotNull"],
                     "fields": "",
                     "values": false
                 },
@@ -1468,7 +1442,7 @@
                     "uid": "be65m7mkyeh34c"
                 },
                 "editorMode": "code",
-                "expr": "max(walrus_shards_owned)",
+                "expr": "max(walrus_shards_owned{service=\"storage_node\"})",
                 "legendFormat": "",
                 "range": true,
                 "refId": "A"
@@ -1518,9 +1492,7 @@
                 "orientation": "horizontal",
                 "percentChangeColorMode": "standard",
                 "reduceOptions": {
-                    "calcs": [
-                        "lastNotNull"
-                    ],
+                    "calcs": ["lastNotNull"],
                     "fields": "",
                     "values": false
                 },
@@ -1531,7 +1503,7 @@
             "pluginVersion": "11.4.0",
             "targets": [{
                 "editorMode": "code",
-                "expr": "sum(walrus_metadata_stored_total) + sum(walrus_metadata_retrieved_total)",
+                "expr": "walrus_metadata_stored_total + walrus_metadata_retrieved_total{service=\"storage_node\"}",
                 "legendFormat": "Total Metadata Operations",
                 "range": true,
                 "refId": "A"
@@ -1582,9 +1554,7 @@
                 "orientation": "horizontal",
                 "percentChangeColorMode": "standard",
                 "reduceOptions": {
-                    "calcs": [
-                        "lastNotNull"
-                    ],
+                    "calcs": ["lastNotNull"],
                     "fields": "",
                     "values": false
                 },
@@ -1595,7 +1565,8 @@
             "pluginVersion": "11.4.0",
             "targets": [{
                 "editorMode": "code",
-                "expr": "sum(walrus_slivers_retrieved_total) + sum(walrus_slivers_stored_total)",
+                "expr": "walrus_slivers_retrieved_total{service=\"storage_node\"} + walrus_slivers_stored_total{service=\"storage_node\"}",
+                "range": true,
                 "refId": "A"
             }],
             "title": "Total Sliver Operations",
@@ -1679,26 +1650,30 @@
             "pluginVersion": "11.4.0",
             "targets": [{
                     "editorMode": "code",
-                    "expr": "rate(walrus_slivers_retrieved_total{sliver_type=\"primary\"}[5m])",
+                    "expr": "rate(walrus_slivers_retrieved_total{sliver_type=\"primary\", service=\"storage_node\"}[5m])",
                     "legendFormat": "Retrieved - Primary",
+                    "range": true,
                     "refId": "A"
                 },
                 {
                     "editorMode": "code",
-                    "expr": "rate(walrus_slivers_retrieved_total{sliver_type=\"secondary\"}[5m])",
+                    "expr": "rate(walrus_slivers_retrieved_total{sliver_type=\"secondary\", service=\"storage_node\"}[5m])",
                     "legendFormat": "Retrieved - Secondary",
+                    "range": true,
                     "refId": "B"
                 },
                 {
                     "editorMode": "code",
-                    "expr": "rate(walrus_slivers_stored_total{sliver_type=\"primary\"}[5m])",
+                    "expr": "rate(walrus_slivers_stored_total{sliver_type=\"primary\", service=\"storage_node\"}[5m])",
                     "legendFormat": "Stored - Primary",
+                    "range": true,
                     "refId": "C"
                 },
                 {
                     "editorMode": "code",
-                    "expr": "rate(walrus_slivers_stored_total{sliver_type=\"secondary\"}[5m])",
+                    "expr": "rate(walrus_slivers_stored_total{sliver_type=\"secondary\", service=\"storage_node\"}[5m])",
                     "legendFormat": "Stored - Secondary",
+                    "range": true,
                     "refId": "D"
                 }
             ],
@@ -1783,14 +1758,16 @@
             "pluginVersion": "11.4.0",
             "targets": [{
                     "editorMode": "code",
-                    "expr": "rate(walrus_metadata_stored_total[5m])",
+                    "expr": "rate(walrus_metadata_stored_total{service=\"storage_node\"}[5m])",
                     "legendFormat": "Metadata Stored Rate",
+                    "range": true,
                     "refId": "A"
                 },
                 {
                     "editorMode": "code",
-                    "expr": "rate(walrus_metadata_retrieved_total[5m])",
+                    "expr": "rate(walrus_metadata_retrieved_total{service=\"storage_node\"}[5m])",
                     "legendFormat": "Metadata Retrieval Rate",
+                    "range": true,
                     "refId": "B"
                 }
             ],
@@ -1945,9 +1922,7 @@
                         "id": "byNames",
                         "options": {
                             "mode": "exclude",
-                            "names": [
-                                "event_store"
-                            ],
+                            "names": ["event_store"],
                             "prefix": "All except:",
                             "readOnly": true
                         }
@@ -1971,18 +1946,14 @@
             "id": 9,
             "options": {
                 "legend": {
-                    "calcs": [
-                        "lastNotNull"
-                    ],
+                    "calcs": ["lastNotNull"],
                     "displayMode": "table",
                     "placement": "right",
                     "showLegend": true,
                     "sortBy": "Last *",
                     "sortDesc": true
                 },
-                "timezone": [
-                    "browser"
-                ],
+                "timezone": ["browser"],
                 "tooltip": {
                     "mode": "single",
                     "sort": "desc"
@@ -1991,7 +1962,7 @@
             "pluginVersion": "11.4.0",
             "targets": [{
                 "editorMode": "code",
-                "expr": "rate(block_cache_hit_count[5m])",
+                "expr": "rate(block_cache_hit_count{service=\"storage_node\"}[5m])",
                 "legendFormat": "{{cf_name}}",
                 "range": true,
                 "refId": "A"
@@ -2062,9 +2033,7 @@
                         "id": "byNames",
                         "options": {
                             "mode": "exclude",
-                            "names": [
-                                "checkpoint_store"
-                            ],
+                            "names": ["checkpoint_store"],
                             "prefix": "All except:",
                             "readOnly": true
                         }
@@ -2088,9 +2057,7 @@
             "id": 36,
             "options": {
                 "legend": {
-                    "calcs": [
-                        "lastNotNull"
-                    ],
+                    "calcs": ["lastNotNull"],
                     "displayMode": "table",
                     "placement": "right",
                     "showLegend": true,
@@ -2105,7 +2072,7 @@
             "pluginVersion": "11.4.0",
             "targets": [{
                 "editorMode": "code",
-                "expr": "rate(get_read_bytes[5m]) / (1024 * 1024)",
+                "expr": "rate(get_read_bytes{service=\"storage_node\"}[5m]) / (1024 * 1024)",
                 "legendFormat": "{{cf_name}}",
                 "range": true,
                 "refId": "A"
@@ -2176,9 +2143,7 @@
                         "id": "byNames",
                         "options": {
                             "mode": "exclude",
-                            "names": [
-                                "shard-314/primary-slivers"
-                            ],
+                            "names": ["shard-314/primary-slivers"],
                             "prefix": "All except:",
                             "readOnly": true
                         }
@@ -2202,9 +2167,7 @@
             "id": 12,
             "options": {
                 "legend": {
-                    "calcs": [
-                        "lastNotNull"
-                    ],
+                    "calcs": ["lastNotNull"],
                     "displayMode": "table",
                     "placement": "right",
                     "showLegend": true,
@@ -2219,7 +2182,7 @@
             "pluginVersion": "11.4.0",
             "targets": [{
                 "editorMode": "code",
-                "expr": "rate(block_read_byte[5m]) / (1024 * 1024)",
+                "expr": "rate(block_read_byte{service=\"storage_node\"}[5m]) / (1024 * 1024)",
                 "legendFormat": "{{cf_name}}",
                 "range": true,
                 "refId": "A"
@@ -2295,9 +2258,7 @@
             "id": 13,
             "options": {
                 "legend": {
-                    "calcs": [
-                        "lastNotNull"
-                    ],
+                    "calcs": ["lastNotNull"],
                     "displayMode": "table",
                     "placement": "right",
                     "showLegend": true,
@@ -2312,7 +2273,7 @@
             "pluginVersion": "11.4.0",
             "targets": [{
                 "editorMode": "code",
-                "expr": "rate(block_read_count[5m])",
+                "expr": "rate(block_read_count{service=\"storage_node\"}[5m])",
                 "legendFormat": "{{cf_name}}",
                 "range": true,
                 "refId": "A"
@@ -2401,9 +2362,7 @@
             "id": 39,
             "options": {
                 "legend": {
-                    "calcs": [
-                        "lastNotNull"
-                    ],
+                    "calcs": ["lastNotNull"],
                     "displayMode": "table",
                     "placement": "right",
                     "showLegend": true,
@@ -2418,7 +2377,7 @@
             "pluginVersion": "11.4.0",
             "targets": [{
                 "editorMode": "code",
-                "expr": "rate(http_request_duration_seconds_sum[5m]) / rate(http_request_duration_seconds_count[5m])",
+                "expr": "rate(http_request_duration_seconds_sum{service=\"storage_node\"}[5m]) / rate(http_request_duration_seconds_count{service=\"storage_node\"}[5m])",
                 "legendFormat": "Name: {{method}} {{route}} {{status_code}}",
                 "range": true,
                 "refId": "A"
@@ -2434,13 +2393,13 @@
         "list": []
     },
     "time": {
-        "from": "now-6h",
+        "from": "now-5m",
         "to": "now"
     },
     "timepicker": {},
     "timezone": "browser",
     "title": "Walrus Storage Node",
     "uid": "de65msz8531moe",
-    "version": 207,
+    "version": 238,
     "weekStart": ""
 }
