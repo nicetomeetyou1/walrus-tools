@@ -255,7 +255,7 @@
                 "type": "prometheus",
                 "uid": "be65m7mkyeh34c"
             },
-            "description": "Displays the total uptime of the Walrus Storage Node in days, indicating its operational status.",
+            "description": "Displays the total uptime of the Walrus Storage Node in seconds, indicating its operational status.",
             "fieldConfig": {
                 "defaults": {
                     "color": {
@@ -270,16 +270,12 @@
                                 "value": null
                             },
                             {
-                                "color": "yellow",
-                                "value": 0.1
-                            },
-                            {
                                 "color": "green",
-                                "value": 0.5
+                                "value": 0.1
                             }
                         ]
                     },
-                    "unit": "days"
+                    "unit": "s"
                 },
                 "overrides": []
             },
@@ -313,7 +309,7 @@
                     "uid": "be65m7mkyeh34c"
                 },
                 "editorMode": "code",
-                "expr": "uptime{service=\"storage_node\"} / 86400",
+                "expr": "uptime{service=\"storage_node\"}",
                 "legendFormat": "",
                 "range": true,
                 "refId": "A"
@@ -2400,6 +2396,6 @@
     "timezone": "browser",
     "title": "Walrus Storage Node",
     "uid": "de65msz8531moe",
-    "version": 238,
+    "version": 239,
     "weekStart": ""
 }
