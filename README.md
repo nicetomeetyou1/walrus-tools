@@ -4,30 +4,6 @@ This repository contains configurations and tools for monitoring and managing th
 
 ---
 
-## **Directory Structure**
-
-```plaintext
-.
-├── README.md
-├── assets                      # Assets like images for documentation
-│   ├── walrus_aggregator.png
-│   ├── walrus_publisher.png
-│   └── walrus_storage_node.png
-├── docker-compose.yml          # Docker Compose file for deploying Grafana and Prometheus
-├── grafana                     # Grafana configuration and assets
-│   ├── dashboards              # Grafana dashboards in JSON format
-│   │   ├── walrus_aggregator.json     # Pre-configured dashboard for Walrus Aggregator
-│   │   ├── walrus_publisher.json      # Pre-configured dashboard for Walrus Publisher
-│   │   └── walrus_storage_node.json  # Pre-configured dashboard for Walrus Storage Node
-│   └── provisioning            # Grafana provisioning files
-│       ├── dashboards
-│       │   └── dashboards.yml  # Dashboard provisioning config
-│       └── datasources
-│           └── prometheus-datasource.yml  # Datasource configuration for Prometheus
-└── prometheus                  # Prometheus configuration
-    └── entrypoint.sh           # Script to dynamically generate Prometheus config
-```
-
 ## Setup and Deployment
 
 ### 1. Clone the Repository
