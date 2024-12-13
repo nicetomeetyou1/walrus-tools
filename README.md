@@ -1,6 +1,6 @@
 # Walrus Tools
 
-This repository contains configurations and tools for monitoring and managing the Walrus network. It currently includes setup files for Grafana and Prometheus, along with a pre-configured dashboard for monitoring the Walrus Storage Node.
+This repository contains configurations and tools for monitoring and managing the Walrus network. It currently includes setup files for Grafana and Prometheus, along with pre-configured dashboards for monitoring the Walrus Storage Node, Aggregator, and Publisher services.
 
 ---
 
@@ -8,20 +8,24 @@ This repository contains configurations and tools for monitoring and managing th
 
 ```plaintext
 .
-├── docker-compose.yml           # Docker Compose file for deploying Grafana and Prometheus
-├── grafana                      # Grafana configuration and assets
-│   ├── dashboards               # Grafana dashboards in JSON format
+├── README.md
+├── assets                      # Assets like images for documentation
+│   ├── walrus_aggregator.png
+│   ├── walrus_publisher.png
+│   └── walrus_storage_node.png
+├── docker-compose.yml          # Docker Compose file for deploying Grafana and Prometheus
+├── grafana                     # Grafana configuration and assets
+│   ├── dashboards              # Grafana dashboards in JSON format
+│   │   ├── walrus_aggregator.json     # Pre-configured dashboard for Walrus Aggregator
+│   │   ├── walrus_publisher.json      # Pre-configured dashboard for Walrus Publisher
 │   │   └── walrus_storage_node.json  # Pre-configured dashboard for Walrus Storage Node
-│   └── provisioning             # Grafana provisioning files
+│   └── provisioning            # Grafana provisioning files
 │       ├── dashboards
-│       │   └── dashboard.yml    # Dashboard provisioning config
+│       │   └── dashboards.yml  # Dashboard provisioning config
 │       └── datasources
-│           └── main.yml         # Datasource configuration for Prometheus
-├── prometheus                   # Prometheus configuration
-│   ├── prometheus.yml.tmpl      # Prometheus scrape configuration template
-│   └── entrypoint.sh            # Script to dynamically generate Prometheus config
-└── assets                       # Assets like images for documentation
-    └── walrus_storage_node.png
+│           └── prometheus-datasource.yml  # Datasource configuration for Prometheus
+└── prometheus                  # Prometheus configuration
+    └── entrypoint.sh           # Script to dynamically generate Prometheus config
 ```
 
 ## Setup and Deployment
@@ -55,7 +59,11 @@ GF_PORT=3000
 # Prometheus Configuration
 PROMETHEUS_PORT=9090
 PROMETHEUS_TARGET=localhost:9090
-WALRUS_TARGET=localhost:9184
+
+# Walrus Targets
+WALRUS_NODE_TARGET=localhost:9184
+WALRUS_AGGREGATOR_TARGET=localhost:27182
+WALRUS_PUBLISHER_TARGET=localhost:27183
 ```
 
 ### 4. Start the Services
@@ -66,10 +74,29 @@ docker compose up -d
 
 This will deploy Grafana and Prometheus containers. Grafana will be accessible at `http://localhost:3000`, and Prometheus at `http://localhost:9090` (or the ports specified in the `.env` file).
 
-### 5. Access the Pre-Configured Dashboard
+### 5. Deploy Specific Dashboards
+
+If you wish to deploy only a subset of the dashboards (e.g., only the Storage Node dashboard), comment out or remove the respective target variables from the `.env` file. For example:
+
+To deploy only the Storage Node dashboard:
+
+```plaintext
+# Walrus Targets
+WALRUS_NODE_TARGET=localhost:9184
+# WALRUS_AGGREGATOR_TARGET=localhost:27182
+# WALRUS_PUBLISHER_TARGET=localhost:27183
+```
+
+Restart the Prometheus container to apply the updated configuration:
+
+```bash
+docker compose restart prometheus
+```
+
+### 6. Access the Pre-Configured Dashboards
 
 Log in to Grafana with the credentials set in your `.env` file.
-The dashboard will be automatically provisioned and available in the Grafana UI.
+The dashboards will be automatically provisioned and available in the Grafana UI.
 
 ## Currently Supported Dashboards
 
@@ -79,44 +106,55 @@ The dashboard will be automatically provisioned and available in the Grafana UI.
 
   ![Walrus Storage Node Dashboard](./assets/walrus_storage_node.png)
 
+- **Walrus Aggregator Dashboard**
+  - **Description**: This dashboard visualizes metrics for the Aggregator service, including blob reconstruction rates, HTTP request handling, and operational health.
+  - **Dashboard File**: [walrus_aggregator.json](./grafana/dashboards/walrus_aggregator.json)
+
+  ![Walrus Aggregator Dashboard](./assets/walrus_aggregator.png)
+
+- **Walrus Publisher Dashboard**
+  - **Description**: This dashboard monitors the Publisher service, providing metrics such as blob storage operations, write latency, and error rates.
+  - **Dashboard File**: [walrus_publisher.json](./grafana/dashboards/walrus_publisher.json)
+
+  ![Walrus Publisher Dashboard](./assets/walrus_publisher.png)
+
 ## Dynamic Configuration Management
 
-### Prometheus Targets
+### Prometheus Configuration
 
-Prometheus dynamically generates its scrape configuration file (`prometheus.yml`) based on a template (`prometheus.yml.tmpl`) and environment variables provided in the `.env` file.
-
-The following placeholders in `prometheus.yml.tmpl` are replaced at runtime by the `entrypoint.sh` script:
+The `entrypoint.sh` script dynamically generates the Prometheus scrape configuration file (`prometheus.yml`) based on environment variables. Users do not need to modify the script directly. Configuration is fully driven by the following environment variables:
 
 - **`PROMETHEUS_TARGET`**: Specifies the target for the Prometheus service.
-- **`WALRUS_TARGET`**: Specifies the target for the Walrus Storage Node.
+- **`WALRUS_NODE_TARGET`**: Specifies the target for the Walrus Storage Node.
+- **`WALRUS_AGGREGATOR_TARGET`**: Specifies the target for the Walrus Aggregator service.
+- **`WALRUS_PUBLISHER_TARGET`**: Specifies the target for the Walrus Publisher service.
 
-Example template (`prometheus.yml.tmpl`):
+### Example Configuration in `.env` File
 
-```yaml
-global:
-  scrape_interval: 15s
+```plaintext
+# Grafana Configuration
+GF_SECURITY_ADMIN_USER=admin
+GF_SECURITY_ADMIN_PASSWORD=admin
+GF_PORT=3000
 
-scrape_configs:
-  - job_name: 'prometheus'
-    static_configs:
-      - targets: ['${PROMETHEUS_TARGET}']
+# Prometheus Configuration
+PROMETHEUS_PORT=9090
+PROMETHEUS_TARGET=localhost:9090
 
-  - job_name: 'walrus_storage_node'
-    static_configs:
-      - targets: ['${WALRUS_TARGET}']
-        labels:
-          service: 'storage_node'
+# Walrus Targets
+WALRUS_NODE_TARGET=localhost:9184
+WALRUS_AGGREGATOR_TARGET=localhost:27182
+WALRUS_PUBLISHER_TARGET=localhost:27183
 ```
-
-During container startup, the `entrypoint.sh` script replaces the placeholders with values from the environment variables and generates the final `prometheus.yml` configuration file.
 
 ### Modifying Targets
 
-To modify scrape targets, update the `.env` file:
+To modify scrape targets, update the `.env` file with the new target values. For example:
 
 ```plaintext
-PROMETHEUS_TARGET=<new_prometheus_target>
-WALRUS_TARGET=<new_walrus_target>
+WALRUS_NODE_TARGET=<new_walrus_node_target>
+WALRUS_AGGREGATOR_TARGET=<new_walrus_aggregator_target>
+WALRUS_PUBLISHER_TARGET=<new_walrus_publisher_target>
 ```
 
 Restart the Prometheus container to apply changes:
@@ -132,3 +170,4 @@ Feel free to contribute enhancements or additional tools for the Walrus network.
 ## License
 
 This repository is licensed under the MIT License. See the LICENSE file for details.
+

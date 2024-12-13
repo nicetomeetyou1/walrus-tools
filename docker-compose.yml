@@ -12,9 +12,14 @@ services:
       GF_SECURITY_ADMIN_USER: ${GF_SECURITY_ADMIN_USER}
       GF_SECURITY_ADMIN_PASSWORD: ${GF_SECURITY_ADMIN_PASSWORD}
       PROMETHEUS_URL: "http://prometheus:${PROMETHEUS_PORT:-9090}"
+      WALRUS_NODE_TARGET: ${WALRUS_NODE_TARGET:-}
+      WALRUS_AGGREGATOR_TARGET: ${WALRUS_AGGREGATOR_TARGET:-}
+      WALRUS_PUBLISHER_TARGET: ${WALRUS_PUBLISHER_TARGET:-}
     volumes:
+      - ./grafana/dashboards:/tmp/dashboards
       - ./grafana/provisioning:/etc/grafana/provisioning
-      - ./grafana/dashboards:/var/lib/grafana/dashboards
+      - ./grafana/entrypoint.sh:/entrypoint.sh
+    entrypoint: ["/entrypoint.sh"]
 
   prometheus:
     image: prom/prometheus:latest
@@ -23,13 +28,12 @@ services:
       - "${PROMETHEUS_PORT:-9090}:9090"
     volumes:
       - prometheus_data:/prometheus
-      - ./prometheus/prometheus.yml.tmpl:/etc/prometheus/prometheus.yml.tmpl
       - ./prometheus/entrypoint.sh:/entrypoint.sh
     environment:
       PROMETHEUS_TARGET: ${PROMETHEUS_TARGET:-localhost:9090}
-      WALRUS_NODE_TARGET: ${WALRUS_NODE_TARGET:-localhost:9184}
-      WALRUS_AGGREGATOR_TARGET: ${WALRUS_AGGREGATOR_TARGET:-localhost:27182}
-      WALRUS_PUBLISHER_TARGET: ${WALRUS_PUBLISHER_TARGET:-localhost:27183}
+      WALRUS_NODE_TARGET: ${WALRUS_NODE_TARGET:-}
+      WALRUS_AGGREGATOR_TARGET: ${WALRUS_AGGREGATOR_TARGET:-}
+      WALRUS_PUBLISHER_TARGET: ${WALRUS_PUBLISHER_TARGET:-}
     entrypoint: ["/entrypoint.sh"]
 
 volumes:
