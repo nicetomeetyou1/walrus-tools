@@ -8,6 +8,18 @@ scrape_configs:
 
   - job_name: 'walrus_storage_node'
     static_configs:
-      - targets: ['${WALRUS_TARGET}']
+      - targets: ['${WALRUS_NODE_TARGET}']
         labels:
           service: 'storage_node'
+
+  - job_name: 'walrus_aggregator'
+    static_configs:
+      - targets: ['${WALRUS_AGGREGATOR_TARGET}']
+        labels:
+          service: 'aggregator'
+
+  - job_name: 'walrus_publisher'
+    static_configs:
+      - targets: ['${WALRUS_PUBLISHER_TARGET}']
+        labels:
+          service: 'publisher'          

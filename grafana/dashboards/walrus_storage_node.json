@@ -13,6 +13,7 @@
             "type": "dashboard"
         }]
     },
+    "description": "This dashboard provides key insights into the performance and health of Storage Operators within the Walrus decentralized storage network. Storage Operators are the backbone of the system, responsible for storing and serving data slivers that collectively form the decentralized storage layer.",
     "editable": true,
     "fiscalYearStartMonth": 0,
     "graphTooltip": 0,
@@ -72,7 +73,9 @@
                 "orientation": "auto",
                 "percentChangeColorMode": "standard",
                 "reduceOptions": {
-                    "calcs": ["lastNotNull"],
+                    "calcs": [
+                        "lastNotNull"
+                    ],
                     "fields": "",
                     "values": false
                 },
@@ -103,7 +106,9 @@
             "transformations": [{
                 "id": "labelsToFields",
                 "options": {
-                    "keepLabels": ["version"],
+                    "keepLabels": [
+                        "version"
+                    ],
                     "valueLabel": "version"
                 }
             }],
@@ -150,7 +155,9 @@
                 "orientation": "auto",
                 "percentChangeColorMode": "standard",
                 "reduceOptions": {
-                    "calcs": ["lastNotNull"],
+                    "calcs": [
+                        "lastNotNull"
+                    ],
                     "fields": "",
                     "values": false
                 },
@@ -177,7 +184,9 @@
             "transformations": [{
                 "id": "labelsToFields",
                 "options": {
-                    "keepLabels": ["chain_identifier"],
+                    "keepLabels": [
+                        "chain_identifier"
+                    ],
                     "valueLabel": "chain_identifier"
                 }
             }],
@@ -227,7 +236,9 @@
                 "orientation": "horizontal",
                 "percentChangeColorMode": "standard",
                 "reduceOptions": {
-                    "calcs": ["lastNotNull"],
+                    "calcs": [
+                        "lastNotNull"
+                    ],
                     "fields": "",
                     "values": false
                 },
@@ -255,7 +266,7 @@
                 "type": "prometheus",
                 "uid": "be65m7mkyeh34c"
             },
-            "description": "Displays the total uptime of the Walrus Storage Node in seconds, indicating its operational status.",
+            "description": "Displays the total uptime of the Walrus Storage Node in days, indicating its operational status.",
             "fieldConfig": {
                 "defaults": {
                     "color": {
@@ -293,7 +304,9 @@
                 "orientation": "horizontal",
                 "percentChangeColorMode": "standard",
                 "reduceOptions": {
-                    "calcs": ["lastNotNull"],
+                    "calcs": [
+                        "lastNotNull"
+                    ],
                     "fields": "",
                     "values": false
                 },
@@ -413,7 +426,9 @@
                     "showLegend": true
                 },
                 "showPoints": "always",
-                "timezone": ["browser"],
+                "timezone": [
+                    "browser"
+                ],
                 "tooltip": {
                     "mode": "single",
                     "sort": "none"
@@ -600,7 +615,9 @@
                 "orientation": "horizontal",
                 "percentChangeColorMode": "standard",
                 "reduceOptions": {
-                    "calcs": ["lastNotNull"],
+                    "calcs": [
+                        "lastNotNull"
+                    ],
                     "fields": "",
                     "values": false
                 },
@@ -665,7 +682,9 @@
                 "orientation": "horizontal",
                 "percentChangeColorMode": "standard",
                 "reduceOptions": {
-                    "calcs": ["lastNotNull"],
+                    "calcs": [
+                        "lastNotNull"
+                    ],
                     "fields": "",
                     "values": false
                 },
@@ -726,7 +745,9 @@
                 "orientation": "horizontal",
                 "percentChangeColorMode": "standard",
                 "reduceOptions": {
-                    "calcs": ["lastNotNull"],
+                    "calcs": [
+                        "lastNotNull"
+                    ],
                     "fields": "",
                     "values": false
                 },
@@ -792,7 +813,9 @@
                 "orientation": "horizontal",
                 "percentChangeColorMode": "standard",
                 "reduceOptions": {
-                    "calcs": ["lastNotNull"],
+                    "calcs": [
+                        "lastNotNull"
+                    ],
                     "fields": "",
                     "values": false
                 },
@@ -895,7 +918,9 @@
                     "placement": "bottom",
                     "showLegend": true
                 },
-                "timezone": ["browser"],
+                "timezone": [
+                    "browser"
+                ],
                 "tooltip": {
                     "mode": "single",
                     "sort": "none"
@@ -1064,7 +1089,9 @@
                 "orientation": "horizontal",
                 "percentChangeColorMode": "standard",
                 "reduceOptions": {
-                    "calcs": ["lastNotNull"],
+                    "calcs": [
+                        "lastNotNull"
+                    ],
                     "fields": "",
                     "values": false
                 },
@@ -1123,7 +1150,7 @@
                 "x": 6,
                 "y": 22
             },
-            "id": 55,
+            "id": 57,
             "options": {
                 "colorMode": "value",
                 "graphMode": "none",
@@ -1131,7 +1158,9 @@
                 "orientation": "horizontal",
                 "percentChangeColorMode": "standard",
                 "reduceOptions": {
-                    "calcs": ["lastNotNull"],
+                    "calcs": [
+                        "lastNotNull"
+                    ],
                     "fields": "",
                     "values": false
                 },
@@ -1163,7 +1192,40 @@
             "fieldConfig": {
                 "defaults": {
                     "color": {
-                        "mode": "continuous-GrYlRd"
+                        "mode": "palette-classic"
+                    },
+                    "custom": {
+                        "axisBorderShow": false,
+                        "axisCenteredZero": false,
+                        "axisColorMode": "text",
+                        "axisLabel": "",
+                        "axisPlacement": "auto",
+                        "barAlignment": 0,
+                        "barWidthFactor": 0.6,
+                        "drawStyle": "line",
+                        "fillOpacity": 10,
+                        "gradientMode": "none",
+                        "hideFrom": {
+                            "legend": false,
+                            "tooltip": false,
+                            "viz": false
+                        },
+                        "insertNulls": false,
+                        "lineInterpolation": "smooth",
+                        "lineWidth": 1,
+                        "pointSize": 5,
+                        "scaleDistribution": {
+                            "type": "linear"
+                        },
+                        "showPoints": "always",
+                        "spanNulls": false,
+                        "stacking": {
+                            "group": "A",
+                            "mode": "none"
+                        },
+                        "thresholdsStyle": {
+                            "mode": "off"
+                        }
                     },
                     "decimals": 2,
                     "mappings": [],
@@ -1186,28 +1248,18 @@
             },
             "id": 32,
             "options": {
-                "displayMode": "gradient",
                 "legend": {
-                    "calcs": [],
+                    "calcs": [
+                        "lastNotNull"
+                    ],
                     "displayMode": "list",
                     "placement": "right",
-                    "show": true,
-                    "showLegend": false
+                    "showLegend": true
                 },
-                "maxVizHeight": 300,
-                "minVizHeight": 16,
-                "minVizWidth": 8,
-                "namePlacement": "auto",
-                "orientation": "horizontal",
-                "reduceOptions": {
-                    "calcs": ["lastNotNull"],
-                    "fields": "",
-                    "values": false
-                },
-                "showUnfilled": true,
-                "showValue": "auto",
-                "sizing": "auto",
-                "valueMode": "color"
+                "tooltip": {
+                    "mode": "single",
+                    "sort": "none"
+                }
             },
             "pluginVersion": "11.4.0",
             "targets": [{
@@ -1218,7 +1270,7 @@
                 "refId": "A"
             }],
             "title": "Average Event Processing Time",
-            "type": "bargauge"
+            "type": "timeseries"
         },
         {
             "datasource": {
@@ -1319,9 +1371,705 @@
                 "x": 0,
                 "y": 32
             },
+            "id": 56,
+            "panels": [],
+            "title": "Blob Recovery",
+            "type": "row"
+        },
+        {
+            "datasource": {
+                "type": "prometheus",
+                "uid": "be65m7mkyeh34c"
+            },
+            "description": "Displays the current number of blob recoveries that are in-progress on the node in the Walrus network.",
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "thresholds"
+                    },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [{
+                                "color": "green",
+                                "value": null
+                            },
+                            {
+                                "color": "yellow",
+                                "value": 5
+                            },
+                            {
+                                "color": "red",
+                                "value": 10
+                            }
+                        ]
+                    },
+                    "unit": "none"
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 5,
+                "w": 6,
+                "x": 0,
+                "y": 33
+            },
+            "id": 55,
+            "options": {
+                "colorMode": "value",
+                "graphMode": "none",
+                "justifyMode": "center",
+                "orientation": "horizontal",
+                "percentChangeColorMode": "standard",
+                "reduceOptions": {
+                    "calcs": [
+                        "lastNotNull"
+                    ],
+                    "fields": "",
+                    "values": false
+                },
+                "showPercentChange": false,
+                "textMode": "value",
+                "wideLayout": false
+            },
+            "pluginVersion": "11.4.0",
+            "targets": [{
+                "datasource": {
+                    "type": "prometheus",
+                    "uid": "be65m7mkyeh34c"
+                },
+                "editorMode": "code",
+                "expr": "max(walrus_recover_blob_backlog{state=\"in-progress\", service=\"storage_node\"})",
+                "legendFormat": "",
+                "range": true,
+                "refId": "A"
+            }],
+            "title": "Blob Recovery In-Progress",
+            "type": "stat"
+        },
+        {
+            "datasource": {
+                "type": "prometheus",
+                "uid": "be65m7mkyeh34c"
+            },
+            "description": "Displays the current number of blob recoveries queued by the node in the Walrus network.",
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "thresholds"
+                    },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [{
+                                "color": "green",
+                                "value": null
+                            },
+                            {
+                                "color": "yellow",
+                                "value": 5
+                            },
+                            {
+                                "color": "red",
+                                "value": 10
+                            }
+                        ]
+                    },
+                    "unit": "none"
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 5,
+                "w": 6,
+                "x": 6,
+                "y": 33
+            },
+            "id": 58,
+            "options": {
+                "colorMode": "value",
+                "graphMode": "none",
+                "justifyMode": "center",
+                "orientation": "horizontal",
+                "percentChangeColorMode": "standard",
+                "reduceOptions": {
+                    "calcs": [
+                        "lastNotNull"
+                    ],
+                    "fields": "",
+                    "values": false
+                },
+                "showPercentChange": false,
+                "textMode": "value",
+                "wideLayout": false
+            },
+            "pluginVersion": "11.4.0",
+            "targets": [{
+                "datasource": {
+                    "type": "prometheus",
+                    "uid": "be65m7mkyeh34c"
+                },
+                "editorMode": "code",
+                "expr": "max(walrus_recover_blob_backlog{state=\"queued\", service=\"storage_node\"})",
+                "legendFormat": "",
+                "range": true,
+                "refId": "A"
+            }],
+            "title": "Blob Recovery Queued",
+            "type": "stat"
+        },
+        {
+            "datasource": {
+                "type": "prometheus",
+                "uid": "be65m7mkyeh34c"
+            },
+            "description": "Displays the timeline of blob recovery backlog states in the Walrus network, highlighting transitions between 'in-progress' and 'queued' statuses.",
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "palette-classic"
+                    },
+                    "custom": {
+                        "axisBorderShow": false,
+                        "axisCenteredZero": false,
+                        "axisColorMode": "text",
+                        "axisGridShow": true,
+                        "axisLabel": "Blobs",
+                        "axisPlacement": "auto",
+                        "axisSoftMax": 10,
+                        "axisSoftMin": 0,
+                        "barAlignment": 0,
+                        "barWidthFactor": 1,
+                        "drawStyle": "bars",
+                        "fillOpacity": 100,
+                        "gradientMode": "hue",
+                        "hideFrom": {
+                            "legend": false,
+                            "tooltip": false,
+                            "viz": false
+                        },
+                        "insertNulls": false,
+                        "lineInterpolation": "linear",
+                        "lineWidth": 1,
+                        "pointSize": 5,
+                        "scaleDistribution": {
+                            "type": "linear"
+                        },
+                        "showPoints": "auto",
+                        "spanNulls": false,
+                        "stacking": {
+                            "group": "A",
+                            "mode": "none"
+                        },
+                        "thresholdsStyle": {
+                            "mode": "off"
+                        }
+                    },
+                    "decimals": 0,
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [{
+                                "color": "green",
+                                "value": null
+                            },
+                            {
+                                "color": "yellow",
+                                "value": 5
+                            },
+                            {
+                                "color": "red",
+                                "value": 10
+                            }
+                        ]
+                    },
+                    "unit": "none"
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 5,
+                "w": 12,
+                "x": 12,
+                "y": 33
+            },
+            "id": 5,
+            "options": {
+                "fieldOptions": {
+                    "calcs": [],
+                    "values": false
+                },
+                "graphMode": "bars",
+                "legend": {
+                    "calcs": [],
+                    "displayMode": "list",
+                    "placement": "bottom",
+                    "showLegend": true
+                },
+                "showPoints": "auto",
+                "timezone": [
+                    "browser"
+                ],
+                "tooltip": {
+                    "mode": "multi",
+                    "sort": "none"
+                }
+            },
+            "pluginVersion": "11.4.0",
+            "targets": [{
+                "datasource": {
+                    "type": "prometheus",
+                    "uid": "be65m7mkyeh34c"
+                },
+                "editorMode": "code",
+                "expr": "walrus_recover_blob_backlog{state=~\"in-progress|queued\", service=\"storage_node\"}",
+                "legendFormat": "{{state}}",
+                "range": true,
+                "refId": "A"
+            }],
+            "title": "Blob Recovery Backlog Timeline",
+            "type": "timeseries"
+        },
+        {
+            "datasource": {
+                "type": "prometheus",
+                "uid": "be65m7mkyeh34c"
+            },
+            "description": "Displays the time (in seconds) spent recovering blobs in the Walrus network, categorized by skip and success statuses.",
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "palette-classic"
+                    },
+                    "custom": {
+                        "axisBorderShow": false,
+                        "axisCenteredZero": false,
+                        "axisColorMode": "text",
+                        "axisGridShow": true,
+                        "axisLabel": "Seconds",
+                        "axisPlacement": "auto",
+                        "barAlignment": 0,
+                        "barWidthFactor": 0.6,
+                        "drawStyle": "lines",
+                        "fillOpacity": 10,
+                        "gradientMode": "none",
+                        "hideFrom": {
+                            "legend": false,
+                            "tooltip": false,
+                            "viz": false
+                        },
+                        "insertNulls": false,
+                        "lineInterpolation": "smooth",
+                        "lineWidth": 2,
+                        "pointSize": 5,
+                        "scaleDistribution": {
+                            "type": "linear"
+                        },
+                        "showPoints": "always",
+                        "spanNulls": true,
+                        "stacking": {
+                            "group": "A",
+                            "mode": "none"
+                        },
+                        "thresholdsStyle": {
+                            "mode": "off"
+                        }
+                    },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [{
+                                "color": "green",
+                                "value": null
+                            },
+                            {
+                                "color": "yellow",
+                                "value": 2
+                            },
+                            {
+                                "color": "red",
+                                "value": 5
+                            }
+                        ]
+                    },
+                    "unit": "s"
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 6,
+                "w": 12,
+                "x": 0,
+                "y": 38
+            },
+            "id": 6,
+            "options": {
+                "fieldOptions": {
+                    "calcs": [],
+                    "values": false
+                },
+                "graphMode": "line",
+                "legend": {
+                    "calcs": [],
+                    "displayMode": "list",
+                    "placement": "bottom",
+                    "showLegend": true
+                },
+                "showPoints": "auto",
+                "timezone": [
+                    "browser"
+                ],
+                "tooltip": {
+                    "mode": "multi",
+                    "sort": "none"
+                }
+            },
+            "pluginVersion": "11.4.0",
+            "targets": [{
+                    "datasource": {
+                        "type": "prometheus",
+                        "uid": "be65m7mkyeh34c"
+                    },
+                    "editorMode": "code",
+                    "expr": "histogram_quantile(0.95, sum(rate(walrus_recover_blob_duration_seconds_bucket{service=\"storage_node\"}[5m])) by (le, status))",
+                    "legendFormat": "95th percentile - {{status}}",
+                    "range": true,
+                    "refId": "A"
+                },
+                {
+                    "datasource": {
+                        "type": "prometheus",
+                        "uid": "be65m7mkyeh34c"
+                    },
+                    "editorMode": "code",
+                    "expr": "sum(rate(walrus_recover_blob_duration_seconds_sum{service=\"storage_node\"}[5m])) by (status) / sum(rate(walrus_recover_blob_duration_seconds_count{service=\"storage_node\"}[5m])) by (status)",
+                    "legendFormat": "Average - {{status}}",
+                    "range": true,
+                    "refId": "B"
+                }
+            ],
+            "title": "Blob Recovery Duration",
+            "type": "timeseries"
+        },
+        {
+            "datasource": {
+                "type": "prometheus",
+                "uid": "be65m7mkyeh34c"
+            },
+            "description": "Displays the time spent recovering blob parts (metadata, primary, secondary) in the Walrus network, categorized by status (success, skip).",
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "palette-classic"
+                    },
+                    "custom": {
+                        "axisBorderShow": false,
+                        "axisCenteredZero": false,
+                        "axisColorMode": "text",
+                        "axisGridShow": true,
+                        "axisLabel": "Seconds",
+                        "axisPlacement": "auto",
+                        "barAlignment": 0,
+                        "barWidthFactor": 0.6,
+                        "drawStyle": "lines",
+                        "fillOpacity": 10,
+                        "gradientMode": "none",
+                        "hideFrom": {
+                            "legend": false,
+                            "tooltip": false,
+                            "viz": false
+                        },
+                        "insertNulls": false,
+                        "lineInterpolation": "smooth",
+                        "lineWidth": 2,
+                        "pointSize": 5,
+                        "scaleDistribution": {
+                            "type": "linear"
+                        },
+                        "showPoints": "always",
+                        "spanNulls": true,
+                        "stacking": {
+                            "group": "A",
+                            "mode": "none"
+                        },
+                        "thresholdsStyle": {
+                            "mode": "off"
+                        }
+                    },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [{
+                                "color": "green",
+                                "value": null
+                            },
+                            {
+                                "color": "yellow",
+                                "value": 2
+                            },
+                            {
+                                "color": "red",
+                                "value": 5
+                            }
+                        ]
+                    },
+                    "unit": "s"
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 6,
+                "w": 12,
+                "x": 12,
+                "y": 38
+            },
+            "id": 7,
+            "options": {
+                "fieldOptions": {
+                    "calcs": [],
+                    "values": false
+                },
+                "graphMode": "line",
+                "legend": {
+                    "calcs": [],
+                    "displayMode": "list",
+                    "placement": "bottom",
+                    "showLegend": true
+                },
+                "showPoints": "auto",
+                "timezone": [
+                    "browser"
+                ],
+                "tooltip": {
+                    "mode": "multi",
+                    "sort": "none"
+                }
+            },
+            "pluginVersion": "11.4.0",
+            "targets": [{
+                    "datasource": {
+                        "type": "prometheus",
+                        "uid": "be65m7mkyeh34c"
+                    },
+                    "editorMode": "code",
+                    "expr": "histogram_quantile(0.95, sum(rate(walrus_recover_blob_part_duration_seconds_bucket{service=\"storage_node\"}[5m])) by (le, part, status))",
+                    "legendFormat": "95th Percentile - {{part}} - {{status}}",
+                    "range": true,
+                    "refId": "A"
+                },
+                {
+                    "datasource": {
+                        "type": "prometheus",
+                        "uid": "be65m7mkyeh34c"
+                    },
+                    "editorMode": "code",
+                    "expr": "sum(rate(walrus_recover_blob_part_duration_seconds_sum{service=\"storage_node\"}[5m])) by (part, status) / sum(rate(walrus_recover_blob_part_duration_seconds_count{service=\"storage_node\"}[5m])) by (part, status)",
+                    "legendFormat": "Average - {{part}} - {{status}}",
+                    "range": true,
+                    "refId": "B"
+                }
+            ],
+            "title": "Blob Part Recovery Duration",
+            "type": "timeseries"
+        },
+        {
+            "collapsed": false,
+            "gridPos": {
+                "h": 1,
+                "w": 24,
+                "x": 0,
+                "y": 44
+            },
+            "id": 59,
+            "panels": [],
+            "title": "Span Latency",
+            "type": "row"
+        },
+        {
+            "datasource": {
+                "type": "prometheus",
+                "uid": "be65m7mkyeh34c"
+            },
+            "description": "Displays the latency distribution for spans in the storage node service, categorized by span names.",
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "palette-classic"
+                    },
+                    "custom": {
+                        "axisBorderShow": true,
+                        "axisCenteredZero": false,
+                        "axisColorMode": "text",
+                        "axisLabel": "Latency(ms)",
+                        "axisPlacement": "left",
+                        "barAlignment": 0,
+                        "barWidthFactor": 0.6,
+                        "drawStyle": "line",
+                        "fillOpacity": 5,
+                        "gradientMode": "none",
+                        "hideFrom": {
+                            "legend": false,
+                            "tooltip": false,
+                            "viz": false
+                        },
+                        "insertNulls": false,
+                        "lineInterpolation": "smooth",
+                        "lineWidth": 2,
+                        "pointSize": 5,
+                        "scaleDistribution": {
+                            "type": "linear"
+                        },
+                        "showPoints": "always",
+                        "spanNulls": true,
+                        "stacking": {
+                            "group": "A",
+                            "mode": "none"
+                        },
+                        "thresholdsStyle": {
+                            "mode": "off"
+                        }
+                    },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [{
+                            "color": "green",
+                            "value": null
+                        }]
+                    },
+                    "unit": "ns"
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 9,
+                "w": 24,
+                "x": 0,
+                "y": 45
+            },
+            "id": 60,
+            "options": {
+                "legend": {
+                    "calcs": [
+                        "lastNotNull"
+                    ],
+                    "displayMode": "table",
+                    "placement": "right",
+                    "showLegend": true
+                },
+                "tooltip": {
+                    "mode": "multi",
+                    "sort": "none"
+                }
+            },
+            "pluginVersion": "11.4.0",
+            "targets": [{
+                "expr": "histogram_quantile(0.95, sum(rate(tracing_span_latencies_bucket{service=\"storage_node\"}[5m])) by (le, span_name))",
+                "legendFormat": "95th percentile - {{span_name}}",
+                "refId": "A"
+            }],
+            "title": "Latency Distribution",
+            "type": "timeseries"
+        },
+        {
+            "datasource": {
+                "type": "prometheus",
+                "uid": "be65m7mkyeh34c"
+            },
+            "description": "Displays the average latency for spans in the storage node service.",
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "palette-classic"
+                    },
+                    "custom": {
+                        "axisBorderShow": true,
+                        "axisCenteredZero": false,
+                        "axisColorMode": "text",
+                        "axisLabel": "Latency(ms)",
+                        "axisPlacement": "left",
+                        "barAlignment": 0,
+                        "barWidthFactor": 0.6,
+                        "drawStyle": "line",
+                        "fillOpacity": 10,
+                        "gradientMode": "none",
+                        "hideFrom": {
+                            "legend": false,
+                            "tooltip": false,
+                            "viz": false
+                        },
+                        "insertNulls": false,
+                        "lineInterpolation": "smooth",
+                        "lineWidth": 2,
+                        "pointSize": 5,
+                        "scaleDistribution": {
+                            "type": "linear"
+                        },
+                        "showPoints": "always",
+                        "spanNulls": true,
+                        "stacking": {
+                            "group": "A",
+                            "mode": "none"
+                        },
+                        "thresholdsStyle": {
+                            "mode": "off"
+                        }
+                    },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [{
+                            "color": "green"
+                        }]
+                    },
+                    "unit": "ns"
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 9,
+                "w": 24,
+                "x": 0,
+                "y": 54
+            },
+            "id": 61,
+            "options": {
+                "legend": {
+                    "calcs": [
+                        "lastNotNull"
+                    ],
+                    "displayMode": "table",
+                    "placement": "right",
+                    "showLegend": true
+                },
+                "timezone": [
+                    "browser"
+                ],
+                "tooltip": {
+                    "mode": "single",
+                    "sort": "desc"
+                }
+            },
+            "pluginVersion": "11.4.0",
+            "targets": [{
+                "expr": "tracing_span_latencies_sum{service=\"storage_node\"} / tracing_span_latencies_count{service=\"storage_node\"}",
+                "legendFormat": "{{span_name}}",
+                "refId": "B"
+            }],
+            "title": "Average Latency",
+            "type": "timeseries"
+        },
+        {
+            "collapsed": false,
+            "gridPos": {
+                "h": 1,
+                "w": 24,
+                "x": 0,
+                "y": 63
+            },
             "id": 40,
             "panels": [],
-            "title": "Shards & Slivers",
+            "title": "Shards",
             "type": "row"
         },
         {
@@ -1340,8 +2088,7 @@
                     "thresholds": {
                         "mode": "absolute",
                         "steps": [{
-                            "color": "green",
-                            "value": null
+                            "color": "green"
                         }]
                     },
                     "unit": "bytes"
@@ -1352,7 +2099,7 @@
                 "h": 4,
                 "w": 6,
                 "x": 0,
-                "y": 33
+                "y": 64
             },
             "id": 10,
             "options": {
@@ -1362,7 +2109,9 @@
                 "orientation": "horizontal",
                 "percentChangeColorMode": "standard",
                 "reduceOptions": {
-                    "calcs": ["lastNotNull"],
+                    "calcs": [
+                        "lastNotNull"
+                    ],
                     "fields": "",
                     "values": false
                 },
@@ -1397,8 +2146,7 @@
                     "thresholds": {
                         "mode": "absolute",
                         "steps": [{
-                                "color": "red",
-                                "value": null
+                                "color": "red"
                             },
                             {
                                 "color": "green",
@@ -1413,7 +2161,7 @@
                 "h": 4,
                 "w": 6,
                 "x": 6,
-                "y": 33
+                "y": 64
             },
             "id": 42,
             "options": {
@@ -1423,7 +2171,9 @@
                 "orientation": "horizontal",
                 "percentChangeColorMode": "standard",
                 "reduceOptions": {
-                    "calcs": ["lastNotNull"],
+                    "calcs": [
+                        "lastNotNull"
+                    ],
                     "fields": "",
                     "values": false
                 },
@@ -1462,8 +2212,7 @@
                     "thresholds": {
                         "mode": "absolute",
                         "steps": [{
-                                "color": "red",
-                                "value": null
+                                "color": "red"
                             },
                             {
                                 "color": "green",
@@ -1478,7 +2227,7 @@
                 "h": 4,
                 "w": 6,
                 "x": 12,
-                "y": 33
+                "y": 64
             },
             "id": 53,
             "options": {
@@ -1488,7 +2237,9 @@
                 "orientation": "horizontal",
                 "percentChangeColorMode": "standard",
                 "reduceOptions": {
-                    "calcs": ["lastNotNull"],
+                    "calcs": [
+                        "lastNotNull"
+                    ],
                     "fields": "",
                     "values": false
                 },
@@ -1523,8 +2274,7 @@
                     "thresholds": {
                         "mode": "absolute",
                         "steps": [{
-                                "color": "red",
-                                "value": null
+                                "color": "red"
                             },
                             {
                                 "color": "green",
@@ -1540,7 +2290,7 @@
                 "h": 4,
                 "w": 6,
                 "x": 18,
-                "y": 33
+                "y": 64
             },
             "id": 21,
             "options": {
@@ -1550,7 +2300,9 @@
                 "orientation": "horizontal",
                 "percentChangeColorMode": "standard",
                 "reduceOptions": {
-                    "calcs": ["lastNotNull"],
+                    "calcs": [
+                        "lastNotNull"
+                    ],
                     "fields": "",
                     "values": false
                 },
@@ -1561,7 +2313,7 @@
             "pluginVersion": "11.4.0",
             "targets": [{
                 "editorMode": "code",
-                "expr": "walrus_slivers_retrieved_total{service=\"storage_node\"} + walrus_slivers_stored_total{service=\"storage_node\"}",
+                "expr": "walrus_slivers_retrieved_total{sliver_type=\"primary\", service=\"storage_node\"} + walrus_slivers_stored_total{sliver_type=\"primary\", service=\"storage_node\"}",
                 "range": true,
                 "refId": "A"
             }],
@@ -1602,7 +2354,7 @@
                         "scaleDistribution": {
                             "type": "linear"
                         },
-                        "showPoints": "never",
+                        "showPoints": "always",
                         "spanNulls": true,
                         "stacking": {
                             "group": "A",
@@ -1616,8 +2368,7 @@
                     "thresholds": {
                         "mode": "absolute",
                         "steps": [{
-                            "color": "blue",
-                            "value": null
+                            "color": "blue"
                         }]
                     },
                     "unit": "none"
@@ -1628,7 +2379,7 @@
                 "h": 8,
                 "w": 8,
                 "x": 0,
-                "y": 37
+                "y": 68
             },
             "id": 15,
             "options": {
@@ -1710,7 +2461,7 @@
                         "scaleDistribution": {
                             "type": "linear"
                         },
-                        "showPoints": "never",
+                        "showPoints": "always",
                         "spanNulls": true,
                         "stacking": {
                             "group": "A",
@@ -1724,8 +2475,7 @@
                     "thresholds": {
                         "mode": "absolute",
                         "steps": [{
-                            "color": "green",
-                            "value": null
+                            "color": "green"
                         }]
                     },
                     "unit": "none"
@@ -1736,7 +2486,7 @@
                 "h": 8,
                 "w": 8,
                 "x": 8,
-                "y": 37
+                "y": 68
             },
             "id": 52,
             "options": {
@@ -1804,7 +2554,7 @@
                         "scaleDistribution": {
                             "type": "linear"
                         },
-                        "showPoints": "never",
+                        "showPoints": "always",
                         "spanNulls": true,
                         "stacking": {
                             "group": "A",
@@ -1818,8 +2568,7 @@
                     "thresholds": {
                         "mode": "absolute",
                         "steps": [{
-                            "color": "blue",
-                            "value": null
+                            "color": "blue"
                         }]
                     },
                     "unit": "none"
@@ -1830,7 +2579,7 @@
                 "h": 8,
                 "w": 8,
                 "x": 16,
-                "y": 37
+                "y": 68
             },
             "id": 49,
             "options": {
@@ -1854,6 +2603,19 @@
             }],
             "title": "Rate of Storage Confirmations Issued",
             "type": "timeseries"
+        },
+        {
+            "collapsed": false,
+            "gridPos": {
+                "h": 1,
+                "w": 24,
+                "x": 0,
+                "y": 76
+            },
+            "id": 62,
+            "panels": [],
+            "title": "Blocks",
+            "type": "row"
         },
         {
             "datasource": {
@@ -1892,7 +2654,7 @@
                         "scaleDistribution": {
                             "type": "linear"
                         },
-                        "showPoints": "never",
+                        "showPoints": "always",
                         "spanNulls": true,
                         "stacking": {
                             "group": "A",
@@ -1906,8 +2668,7 @@
                     "thresholds": {
                         "mode": "absolute",
                         "steps": [{
-                            "color": "green",
-                            "value": null
+                            "color": "green"
                         }]
                     },
                     "unit": "hits"
@@ -1918,7 +2679,9 @@
                         "id": "byNames",
                         "options": {
                             "mode": "exclude",
-                            "names": ["event_store"],
+                            "names": [
+                                "event_store"
+                            ],
                             "prefix": "All except:",
                             "readOnly": true
                         }
@@ -1937,19 +2700,23 @@
                 "h": 10,
                 "w": 12,
                 "x": 0,
-                "y": 45
+                "y": 77
             },
             "id": 9,
             "options": {
                 "legend": {
-                    "calcs": ["lastNotNull"],
+                    "calcs": [
+                        "lastNotNull"
+                    ],
                     "displayMode": "table",
                     "placement": "right",
                     "showLegend": true,
                     "sortBy": "Last *",
                     "sortDesc": true
                 },
-                "timezone": ["browser"],
+                "timezone": [
+                    "browser"
+                ],
                 "tooltip": {
                     "mode": "single",
                     "sort": "desc"
@@ -1964,116 +2731,6 @@
                 "refId": "A"
             }],
             "title": "Block Cache Hit Rate Over Time",
-            "type": "timeseries"
-        },
-        {
-            "datasource": {
-                "type": "prometheus",
-                "uid": "be65m7mkyeh34c"
-            },
-            "description": "Shows the total bytes read for values returned by Get operations in the Walrus Storage Node over time. This metric highlights read activity by column family.",
-            "fieldConfig": {
-                "defaults": {
-                    "color": {
-                        "mode": "palette-classic-by-name"
-                    },
-                    "custom": {
-                        "axisBorderShow": true,
-                        "axisCenteredZero": false,
-                        "axisColorMode": "text",
-                        "axisLabel": "Read Bytes (MB/sec)",
-                        "axisPlacement": "left",
-                        "barAlignment": 0,
-                        "barWidthFactor": 0.6,
-                        "drawStyle": "line",
-                        "fillOpacity": 10,
-                        "gradientMode": "none",
-                        "hideFrom": {
-                            "legend": false,
-                            "tooltip": false,
-                            "viz": false
-                        },
-                        "insertNulls": false,
-                        "lineInterpolation": "smooth",
-                        "lineStyle": {
-                            "fill": "solid"
-                        },
-                        "lineWidth": 2,
-                        "pointSize": 5,
-                        "scaleDistribution": {
-                            "type": "linear"
-                        },
-                        "showPoints": "never",
-                        "spanNulls": true,
-                        "stacking": {
-                            "group": "A",
-                            "mode": "none"
-                        },
-                        "thresholdsStyle": {
-                            "mode": "off"
-                        }
-                    },
-                    "mappings": [],
-                    "thresholds": {
-                        "mode": "absolute",
-                        "steps": [{
-                            "color": "blue",
-                            "value": null
-                        }]
-                    },
-                    "unit": "decbytes"
-                },
-                "overrides": [{
-                    "__systemRef": "hideSeriesFrom",
-                    "matcher": {
-                        "id": "byNames",
-                        "options": {
-                            "mode": "exclude",
-                            "names": ["checkpoint_store"],
-                            "prefix": "All except:",
-                            "readOnly": true
-                        }
-                    },
-                    "properties": [{
-                        "id": "custom.hideFrom",
-                        "value": {
-                            "legend": false,
-                            "tooltip": false,
-                            "viz": true
-                        }
-                    }]
-                }]
-            },
-            "gridPos": {
-                "h": 10,
-                "w": 12,
-                "x": 12,
-                "y": 45
-            },
-            "id": 36,
-            "options": {
-                "legend": {
-                    "calcs": ["lastNotNull"],
-                    "displayMode": "table",
-                    "placement": "right",
-                    "showLegend": true,
-                    "sortBy": "Last *",
-                    "sortDesc": true
-                },
-                "tooltip": {
-                    "mode": "single",
-                    "sort": "desc"
-                }
-            },
-            "pluginVersion": "11.4.0",
-            "targets": [{
-                "editorMode": "code",
-                "expr": "rate(get_read_bytes{service=\"storage_node\"}[5m]) / (1024 * 1024)",
-                "legendFormat": "{{cf_name}}",
-                "range": true,
-                "refId": "A"
-            }],
-            "title": "Get Read Bytes Over Time",
             "type": "timeseries"
         },
         {
@@ -2113,7 +2770,7 @@
                         "scaleDistribution": {
                             "type": "linear"
                         },
-                        "showPoints": "never",
+                        "showPoints": "always",
                         "spanNulls": true,
                         "stacking": {
                             "group": "A",
@@ -2127,8 +2784,7 @@
                     "thresholds": {
                         "mode": "absolute",
                         "steps": [{
-                            "color": "green",
-                            "value": null
+                            "color": "green"
                         }]
                     },
                     "unit": "Bps"
@@ -2139,7 +2795,9 @@
                         "id": "byNames",
                         "options": {
                             "mode": "exclude",
-                            "names": ["shard-314/primary-slivers"],
+                            "names": [
+                                "shard-314/primary-slivers"
+                            ],
                             "prefix": "All except:",
                             "readOnly": true
                         }
@@ -2157,13 +2815,15 @@
             "gridPos": {
                 "h": 10,
                 "w": 12,
-                "x": 0,
-                "y": 55
+                "x": 12,
+                "y": 77
             },
             "id": 12,
             "options": {
                 "legend": {
-                    "calcs": ["lastNotNull"],
+                    "calcs": [
+                        "lastNotNull"
+                    ],
                     "displayMode": "table",
                     "placement": "right",
                     "showLegend": true,
@@ -2184,6 +2844,119 @@
                 "refId": "A"
             }],
             "title": "Block Read Rate Over Time",
+            "type": "timeseries"
+        },
+        {
+            "datasource": {
+                "type": "prometheus",
+                "uid": "be65m7mkyeh34c"
+            },
+            "description": "Shows the total bytes read for values returned by Get operations in the Walrus Storage Node over time. This metric highlights read activity by column family.",
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "palette-classic-by-name"
+                    },
+                    "custom": {
+                        "axisBorderShow": true,
+                        "axisCenteredZero": false,
+                        "axisColorMode": "text",
+                        "axisLabel": "Read Bytes (MB/sec)",
+                        "axisPlacement": "left",
+                        "barAlignment": 0,
+                        "barWidthFactor": 0.6,
+                        "drawStyle": "line",
+                        "fillOpacity": 10,
+                        "gradientMode": "none",
+                        "hideFrom": {
+                            "legend": false,
+                            "tooltip": false,
+                            "viz": false
+                        },
+                        "insertNulls": false,
+                        "lineInterpolation": "smooth",
+                        "lineStyle": {
+                            "fill": "solid"
+                        },
+                        "lineWidth": 2,
+                        "pointSize": 5,
+                        "scaleDistribution": {
+                            "type": "linear"
+                        },
+                        "showPoints": "always",
+                        "spanNulls": true,
+                        "stacking": {
+                            "group": "A",
+                            "mode": "none"
+                        },
+                        "thresholdsStyle": {
+                            "mode": "off"
+                        }
+                    },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [{
+                            "color": "blue"
+                        }]
+                    },
+                    "unit": "decbytes"
+                },
+                "overrides": [{
+                    "__systemRef": "hideSeriesFrom",
+                    "matcher": {
+                        "id": "byNames",
+                        "options": {
+                            "mode": "exclude",
+                            "names": [
+                                "checkpoint_store"
+                            ],
+                            "prefix": "All except:",
+                            "readOnly": true
+                        }
+                    },
+                    "properties": [{
+                        "id": "custom.hideFrom",
+                        "value": {
+                            "legend": false,
+                            "tooltip": false,
+                            "viz": true
+                        }
+                    }]
+                }]
+            },
+            "gridPos": {
+                "h": 10,
+                "w": 12,
+                "x": 0,
+                "y": 87
+            },
+            "id": 36,
+            "options": {
+                "legend": {
+                    "calcs": [
+                        "lastNotNull"
+                    ],
+                    "displayMode": "table",
+                    "placement": "right",
+                    "showLegend": true,
+                    "sortBy": "Last *",
+                    "sortDesc": true
+                },
+                "tooltip": {
+                    "mode": "single",
+                    "sort": "desc"
+                }
+            },
+            "pluginVersion": "11.4.0",
+            "targets": [{
+                "editorMode": "code",
+                "expr": "rate(get_read_bytes{service=\"storage_node\"}[5m]) / (1024 * 1024)",
+                "legendFormat": "{{cf_name}}",
+                "range": true,
+                "refId": "A"
+            }],
+            "title": "Get Read Bytes Over Time",
             "type": "timeseries"
         },
         {
@@ -2223,7 +2996,7 @@
                         "scaleDistribution": {
                             "type": "linear"
                         },
-                        "showPoints": "never",
+                        "showPoints": "always",
                         "spanNulls": true,
                         "stacking": {
                             "group": "A",
@@ -2237,8 +3010,7 @@
                     "thresholds": {
                         "mode": "absolute",
                         "steps": [{
-                            "color": "blue",
-                            "value": null
+                            "color": "blue"
                         }]
                     },
                     "unit": "none"
@@ -2249,12 +3021,14 @@
                 "h": 10,
                 "w": 12,
                 "x": 12,
-                "y": 55
+                "y": 87
             },
             "id": 13,
             "options": {
                 "legend": {
-                    "calcs": ["lastNotNull"],
+                    "calcs": [
+                        "lastNotNull"
+                    ],
                     "displayMode": "table",
                     "placement": "right",
                     "showLegend": true,
@@ -2283,7 +3057,7 @@
                 "h": 1,
                 "w": 24,
                 "x": 0,
-                "y": 65
+                "y": 97
             },
             "id": 37,
             "panels": [],
@@ -2327,7 +3101,7 @@
                         "scaleDistribution": {
                             "type": "linear"
                         },
-                        "showPoints": "never",
+                        "showPoints": "always",
                         "spanNulls": true,
                         "stacking": {
                             "group": "A",
@@ -2341,8 +3115,7 @@
                     "thresholds": {
                         "mode": "absolute",
                         "steps": [{
-                            "color": "blue",
-                            "value": null
+                            "color": "blue"
                         }]
                     },
                     "unit": "s"
@@ -2353,12 +3126,14 @@
                 "h": 11,
                 "w": 24,
                 "x": 0,
-                "y": 66
+                "y": 98
             },
             "id": 39,
             "options": {
                 "legend": {
-                    "calcs": ["lastNotNull"],
+                    "calcs": [
+                        "lastNotNull"
+                    ],
                     "displayMode": "table",
                     "placement": "right",
                     "showLegend": true,
@@ -2389,13 +3164,13 @@
         "list": []
     },
     "time": {
-        "from": "now-5m",
+        "from": "now-15m",
         "to": "now"
     },
     "timepicker": {},
     "timezone": "browser",
     "title": "Walrus Storage Node",
     "uid": "de65msz8531moe",
-    "version": 239,
+    "version": 316,
     "weekStart": ""
 }
