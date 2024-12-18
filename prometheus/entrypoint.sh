@@ -12,7 +12,7 @@ global:
 scrape_configs:
   - job_name: 'prometheus'
     static_configs:
-      - targets: ['${PROMETHEUS_TARGET:-localhost:9090}']
+      - targets: ['${PROMETHEUS_TARGET}']
 EOF
 
 if [ -n "${WALRUS_NODE_TARGET}" ]; then
@@ -45,4 +45,4 @@ if [ -n "${WALRUS_PUBLISHER_TARGET}" ]; then
 EOF
 fi
 
-exec prometheus --config.file=/etc/prometheus/prometheus.yml
+exec prometheus --config.file=/etc/prometheus/prometheus.yml "$@"

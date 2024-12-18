@@ -1,17 +1,15 @@
-version: '3.8'
-
 services:
   grafana:
     image: grafana/grafana:latest
     container_name: grafana
-    ports:
-      - "${GF_PORT:-3000}:3000"
     depends_on:
       - prometheus
+    network_mode: host    
     environment:
       GF_SECURITY_ADMIN_USER: ${GF_SECURITY_ADMIN_USER}
       GF_SECURITY_ADMIN_PASSWORD: ${GF_SECURITY_ADMIN_PASSWORD}
-      PROMETHEUS_URL: "http://prometheus:${PROMETHEUS_PORT:-9090}"
+      GF_SERVER_HTTP_PORT: ${GF_PORT:-3000}   
+      PROMETHEUS_URL: "http://${PROMETHEUS_TARGET:-localhost:9090}"
       WALRUS_NODE_TARGET: ${WALRUS_NODE_TARGET:-}
       WALRUS_AGGREGATOR_TARGET: ${WALRUS_AGGREGATOR_TARGET:-}
       WALRUS_PUBLISHER_TARGET: ${WALRUS_PUBLISHER_TARGET:-}
@@ -24,11 +22,12 @@ services:
   prometheus:
     image: prom/prometheus:latest
     container_name: prometheus
-    ports:
-      - "${PROMETHEUS_PORT:-9090}:9090"
+    command:     
+      - '--web.listen-address=:${PROMETHEUS_PORT:-9090}'     
     volumes:
       - prometheus_data:/prometheus
       - ./prometheus/entrypoint.sh:/entrypoint.sh
+    network_mode: host    
     environment:
       PROMETHEUS_TARGET: ${PROMETHEUS_TARGET:-localhost:9090}
       WALRUS_NODE_TARGET: ${WALRUS_NODE_TARGET:-}
