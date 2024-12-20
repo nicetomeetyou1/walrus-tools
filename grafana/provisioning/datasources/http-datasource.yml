@@ -1,0 +1,11 @@
+apiVersion: 1
+datasources:
+  - name: Infinity-DataSource
+    type: yesoreyeram-infinity-datasource
+    access: proxy
+    url: ${WALRUS_NODE_URL}/v1/health
+    isDefault: false
+    basicAuth: false
+    jsonData:
+      source: "url"    
+    uid: ctibdrobbprrc6ulkutg

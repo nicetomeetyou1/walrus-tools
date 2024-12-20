@@ -40,6 +40,9 @@ PROMETHEUS_TARGET=localhost:9090
 WALRUS_NODE_TARGET=localhost:9184
 WALRUS_AGGREGATOR_TARGET=localhost:27182
 WALRUS_PUBLISHER_TARGET=localhost:27183
+
+# Walrus Node URL
+WALRUS_NODE_URL=localhost:9185
 ```
 
 ### 4. Start the Services
@@ -104,6 +107,7 @@ The `entrypoint.sh` script dynamically generates the Prometheus scrape configura
 - **`WALRUS_NODE_TARGET`**: Specifies the target for the Walrus Storage Node.
 - **`WALRUS_AGGREGATOR_TARGET`**: Specifies the target for the Walrus Aggregator service.
 - **`WALRUS_PUBLISHER_TARGET`**: Specifies the target for the Walrus Publisher service.
+- **`WALRUS_NODE_URL`**: Specifies the URL for the Walrus Node.
 
 ### Example Configuration in `.env` File
 
@@ -121,6 +125,9 @@ PROMETHEUS_TARGET=localhost:9090
 WALRUS_NODE_TARGET=localhost:9184
 WALRUS_AGGREGATOR_TARGET=localhost:27182
 WALRUS_PUBLISHER_TARGET=localhost:27183
+
+# Walrus Node URL
+WALRUS_NODE_URL=localhost:9185
 ```
 
 ### Modifying Targets
@@ -131,6 +138,14 @@ To modify scrape targets, update the `.env` file with the new target values. For
 WALRUS_NODE_TARGET=<new_walrus_node_target>
 WALRUS_AGGREGATOR_TARGET=<new_walrus_aggregator_target>
 WALRUS_PUBLISHER_TARGET=<new_walrus_publisher_target>
+```
+
+### Modifying Walrus Node URL
+
+To modify the Walrus Node URL, update the `.env` file with the new URL. For example:
+
+```plaintext
+WALRUS_NODE_URL=<new_walrus_node_url>
 ```
 
 Restart the Prometheus container to apply changes:
