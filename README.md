@@ -42,7 +42,7 @@ WALRUS_AGGREGATOR_TARGET=localhost:27182
 WALRUS_PUBLISHER_TARGET=localhost:27183
 
 # Walrus Node URL
-WALRUS_NODE_URL=localhost:9185
+WALRUS_NODE_URL=https://localhost:9185
 ```
 
 ### 4. Start the Services
@@ -127,7 +127,7 @@ WALRUS_AGGREGATOR_TARGET=localhost:27182
 WALRUS_PUBLISHER_TARGET=localhost:27183
 
 # Walrus Node URL
-WALRUS_NODE_URL=localhost:9185
+WALRUS_NODE_URL=https://localhost:9185
 ```
 
 ### Modifying Targets
