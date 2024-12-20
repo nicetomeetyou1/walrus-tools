@@ -17,7 +17,7 @@
     "editable": true,
     "fiscalYearStartMonth": 0,
     "graphTooltip": 0,
-    "id": 3,
+    "id": 1,
     "links": [],
     "panels": [{
             "collapsed": false,
@@ -276,12 +276,12 @@
                             "Active": {
                                 "color": "green",
                                 "index": 1,
-                                "text": "Active"
+                                "text": "active"
                             },
                             "Standby": {
                                 "color": "yellow",
                                 "index": 0,
-                                "text": "Standby"
+                                "text": "standby"
                             }
                         },
                         "type": "value"
@@ -3358,7 +3358,7 @@
         "list": []
     },
     "time": {
-        "from": "now-15m",
+        "from": "now-30m",
         "to": "now"
     },
     "timepicker": {},
