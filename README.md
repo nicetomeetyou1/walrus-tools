@@ -173,6 +173,17 @@ docker compose restart prometheus alertmanager
 
 ---
 
+## 🖥️ Platform-Specific Docker Compose Configurations
+
+Docker's network_mode: host works differently on Linux and macOS, requiring separate configurations.
+
+### ⚙️ How to Use Platform-Specific Configurations
+
+- **Linux**: Use `docker-compose.yml` for standard setup.
+- **macOS**: Use `docker-compose.macos.yml` for network_mode: host setup.
+
+---
+
 ## 🤝 **Contributing**
 
 Contributions are welcome! If you find an issue or have an improvement, please open a pull request or create an issue.
