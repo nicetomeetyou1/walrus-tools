@@ -1,30 +1,34 @@
-# Walrus Tools
+<img src="./assets/walrus_header.png" alt="Walrus Tools Header"/>
 
-This repository contains configurations and tools for monitoring and managing the Walrus network. It currently includes setup files for Grafana and Prometheus, along with pre-configured dashboards for monitoring the Walrus Storage Node, Aggregator, and Publisher services.
+# 🚀 **Walrus Tools**
+
+This repository contains configurations and tools for monitoring and managing the **Walrus network**. It includes setup files for **Grafana**, **Prometheus**, and **Alertmanager**, along with pre-configured dashboards for monitoring the **Walrus Storage Node**, **Aggregator**, and **Publisher services**.
 
 ---
 
-## Setup and Deployment
+## 📦 **Setup and Deployment**
 
-### 1. Clone the Repository
+### **1. Clone the Repository**
 
 ```bash
 git clone https://github.com/walrus-network/walrus-tools.git
 ```
 
-### 2. Navigate to the directory
+### **2. Navigate to the Directory**
 
 ```bash
 cd walrus-tools
 ```
 
-### 3. Set Environment Variables
+### **3. Configure Environment Variables**
 
 ```bash
 cp .env.tmp .env
 ```
 
-Edit the `.env` file as needed to configure Grafana and Prometheus. Example `.env.tmp`:
+Edit the `.env` file to configure Grafana, Prometheus, Alertmanager, and notification integrations.
+
+### 📑 **Sample `.env` Configuration**
 
 ```plaintext
 # Grafana Configuration
@@ -36,129 +40,145 @@ GF_PORT=3000
 PROMETHEUS_PORT=9090
 PROMETHEUS_TARGET=localhost:9090
 
+# Alertmanager Configuration
+ALERTMANAGER_PORT=9093
+ALERTMANAGER_TARGET=localhost:9093
+ALERTMANAGER_DEFAULT_WEBHOOK_PORT=3001
+
 # Walrus Targets
 WALRUS_NODE_TARGET=localhost:9184
 WALRUS_AGGREGATOR_TARGET=localhost:27182
 WALRUS_PUBLISHER_TARGET=localhost:27183
-
-# Walrus Node URL
 WALRUS_NODE_URL=https://localhost:9185
+
+# PagerDuty Integration
+PAGERDUTY_INTEGRATION_KEY=<your-pagerduty-key>
+
+# Telegram Integration
+TELEGRAM_BOT_TOKEN=<your-telegram-bot-token>
+TELEGRAM_CHAT_ID=<your-telegram-chat-id>
+
+# Discord Integration
+DISCORD_WEBHOOK_URL=<your-discord-webhook-url>
 ```
 
-### 4. Start the Services
+---
+
+### **4. Start the Services**
 
 ```bash
 docker compose up -d
 ```
 
-This will deploy Grafana and Prometheus containers. Grafana will be accessible at `http://localhost:3000`, and Prometheus at `http://localhost:9090` (or the ports specified in the `.env` file).
+This will deploy the containers for **Grafana**, **Prometheus**, and **Alertmanager**.
 
-### 5. Deploy Specific Dashboards
+- **Grafana**: [http://localhost:3000](http://localhost:3000)  
+- **Prometheus**: [http://localhost:9090](http://localhost:9090)  
+- **Alertmanager**: [http://localhost:9093](http://localhost:9093)
 
-If you wish to deploy only a subset of the dashboards (e.g., only the Storage Node dashboard), comment out or remove the respective target variables from the `.env` file. For example:
+### **5. Verify Services**
 
-To deploy only the Storage Node dashboard:
-
-```plaintext
-# Walrus Targets
-WALRUS_NODE_TARGET=localhost:9184
-# WALRUS_AGGREGATOR_TARGET=localhost:27182
-# WALRUS_PUBLISHER_TARGET=localhost:27183
-```
-
-Restart the Prometheus container to apply the updated configuration:
+Check logs if something doesn't start properly:
 
 ```bash
-docker compose restart prometheus
+docker compose logs <service_name>
 ```
 
-### 6. Access the Pre-Configured Dashboards
+---
 
-Log in to Grafana with the credentials set in your `.env` file.
-The dashboards will be automatically provisioned and available in the Grafana UI.
+## 📊 **Access Pre-Configured Dashboards**
 
-## Currently Supported Dashboards
+### **Grafana Dashboards**
 
-- **Walrus Storage Node Dashboard**
-  - **Description**: This dashboard provides insights into the performance and status of the Walrus Storage Node, including metrics such as storage usage, retrieval rates, and operation latency.
-  - **Dashboard File**: [walrus_storage_node.json](./grafana/dashboards/walrus_storage_node.json)
+1. **Walrus Storage Node Dashboard**  
+   - **Description**: Insights into the performance and status of the Walrus Storage Node, including storage usage, retrieval rates, and latency.
+   - **Dashboard File**: [walrus_storage_node.json](./grafana/dashboards/walrus_storage_node.json)  
+   ![Walrus Storage Node Dashboard](./assets/walrus_storage_node.png)
 
-  ![Walrus Storage Node Dashboard](./assets/walrus_storage_node.png)
+2. **Walrus Aggregator Dashboard**  
+   - **Description**: Tracks Aggregator performance metrics such as blob reconstruction rates and operational health.
+   - **Dashboard File**: [walrus_aggregator.json](./grafana/dashboards/walrus_aggregator.json)  
+   ![Walrus Aggregator Dashboard](./assets/walrus_aggregator.png)
 
-- **Walrus Aggregator Dashboard**
-  - **Description**: This dashboard visualizes metrics for the Aggregator service, including blob reconstruction rates, HTTP request handling, and operational health.
-  - **Dashboard File**: [walrus_aggregator.json](./grafana/dashboards/walrus_aggregator.json)
+3. **Walrus Publisher Dashboard**  
+   - **Description**: Monitors Publisher service metrics, including HTTP request durations, error rates, and latency.
+   - **Dashboard File**: [walrus_publisher.json](./grafana/dashboards/walrus_publisher.json)  
+   ![Walrus Publisher Dashboard](./assets/walrus_publisher.png)
 
-  ![Walrus Aggregator Dashboard](./assets/walrus_aggregator.png)
+---
 
-- **Walrus Publisher Dashboard**
-  - **Description**: This dashboard monitors the Publisher service, providing metrics such as blob storage operations, write latency, and error rates.
-  - **Dashboard File**: [walrus_publisher.json](./grafana/dashboards/walrus_publisher.json)
+## 📡 **Dynamic Alert Configuration**
 
-  ![Walrus Publisher Dashboard](./assets/walrus_publisher.png)
+### **Prometheus Alerts**
 
-## Dynamic Configuration Management
+Alerts are dynamically generated based on environment variables and split into individual rule files:
 
-### Prometheus Configuration
-
-The `entrypoint.sh` script dynamically generates the Prometheus scrape configuration file (`prometheus.yml`) based on environment variables. Users do not need to modify the script directly. Configuration is fully driven by the following environment variables:
-
-- **`PROMETHEUS_TARGET`**: Specifies the target for the Prometheus service.
-- **`WALRUS_NODE_TARGET`**: Specifies the target for the Walrus Storage Node.
-- **`WALRUS_AGGREGATOR_TARGET`**: Specifies the target for the Walrus Aggregator service.
-- **`WALRUS_PUBLISHER_TARGET`**: Specifies the target for the Walrus Publisher service.
-- **`WALRUS_NODE_URL`**: Specifies the URL for the Walrus Node.
-
-### Example Configuration in `.env` File
-
-```plaintext
-# Grafana Configuration
-GF_SECURITY_ADMIN_USER=admin
-GF_SECURITY_ADMIN_PASSWORD=admin
-GF_PORT=3000
-
-# Prometheus Configuration
-PROMETHEUS_PORT=9090
-PROMETHEUS_TARGET=localhost:9090
-
-# Walrus Targets
-WALRUS_NODE_TARGET=localhost:9184
-WALRUS_AGGREGATOR_TARGET=localhost:27182
-WALRUS_PUBLISHER_TARGET=localhost:27183
-
-# Walrus Node URL
-WALRUS_NODE_URL=https://localhost:9185
+```
+/prometheus/rules/
+├── walrus_node_alerts.yml
+├── walrus_aggregator_alerts.yml
+└── walrus_publisher_alerts.yml
 ```
 
-### Modifying Targets
+### 📑 **Sample Rules**
 
-To modify scrape targets, update the `.env` file with the new target values. For example:
+#### **Walrus Storage Node Alerts**
 
-```plaintext
-WALRUS_NODE_TARGET=<new_walrus_node_target>
-WALRUS_AGGREGATOR_TARGET=<new_walrus_aggregator_target>
-WALRUS_PUBLISHER_TARGET=<new_walrus_publisher_target>
-```
+- **Node Restarted Alert**  
+   Triggers if the node uptime hasn’t increased for 5 minutes.  
 
-### Modifying Walrus Node URL
+- **Checkpoint Stuck Alert**  
+   Detects if no new checkpoints have been downloaded in the last 5 minutes.  
 
-To modify the Walrus Node URL, update the `.env` file with the new URL. For example:
+- **Persisted Events Stuck Alert**  
+   Checks if no persisted events were recorded in 5 minutes.
 
-```plaintext
-WALRUS_NODE_URL=<new_walrus_node_url>
-```
+#### **Walrus Aggregator Alerts**
 
-Restart the Prometheus container to apply changes:
+- **High HTTP Server Errors Alert**  
+   Triggers when the server error rate (`5xx`) crosses a threshold.  
+
+- **High Client Error Rate Alert**  
+   Triggers when the client error rate (`4xx`) crosses a threshold. 
+
+#### **Walrus Publisher Alerts**
+
+- **High HTTP Server Errors Alert**  
+   Triggers when the server error rate (`5xx`) crosses a threshold.  
+
+- **High Client Error Rate Alert**  
+   Triggers when the client error rate (`4xx`) crosses a threshold.  
+
+---
+
+## 🚨 **Notification Integrations**
+
+### **Alertmanager Notification Targets**
+
+Alerts are dynamically routed to the following targets based on `.env` variables:
+
+- **PagerDuty**: Integrated via `PAGERDUTY_INTEGRATION_KEY`.  
+- **Telegram**: Configured using `TELEGRAM_BOT_TOKEN` and `TELEGRAM_CHAT_ID`.  
+- **Discord**: Enabled using `DISCORD_WEBHOOK_URL`.
+
+---
+
+## 🔄 **Restart Services After Configuration Updates**
+
+Whenever `.env` or alert rules change, restart services:
 
 ```bash
-docker compose restart prometheus
+docker compose restart prometheus alertmanager
 ```
 
-## Contributing
+---
 
-Feel free to contribute enhancements or additional tools for the Walrus network. Submit pull requests or issues to this repository.
+## 🤝 **Contributing**
 
-## License
+Contributions are welcome! If you find an issue or have an improvement, please open a pull request or create an issue.
 
-This repository is licensed under the MIT License. See the LICENSE file for details.
+---
 
+## 📝 **License**
+
+This repository is licensed under the **MIT License**. See the [LICENSE](LICENSE) file for details.
