@@ -1,0 +1,38 @@
+groups:
+  - name: walrus_storage_node_alerts
+    rules:
+      - alert: NodeRestarted
+        expr: increase(uptime{service="storage_node"}[5m]) == 0
+        for: 5m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Walrus Storage Node Restarted"
+          description: "The Walrus Storage Node uptime has not increased in the last 5 minutes, suggesting a restart or failure."
+
+      - alert: CheckpointsStuck
+        expr: increase(event_processor_latest_downloaded_checkpoint{service="storage_node"}[5m]) == 0
+        for: 5m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Checkpoints Stuck"
+          description: "No new checkpoints have been downloaded in the last 5 minutes on the Walrus Storage Node."
+
+      - alert: PersistedEventsStuck
+        expr: increase(walrus_event_cursor_progress{state="persisted", service="storage_node"}[5m]) == 0
+        for: 5m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Persisted Events Stuck"
+          description: "No new persisted events have been recorded in the last 5 minutes on the Walrus Storage Node."
+
+      - alert: ShardsOwnedZero
+        expr: walrus_shards_owned{service="storage_node"} == 0
+        for: 2m
+        labels:
+          severity: critical
+        annotations:
+          summary: "No Shards Owned by Walrus Storage Node"
+          description: "The Walrus Storage Node currently owns zero shards, indicating either a failure or that the node has been removed from the active committee set."

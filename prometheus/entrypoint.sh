@@ -18,8 +18,23 @@ alerting:
         - targets: ['${ALERTMANAGER_TARGET:-localhost:9093}']
 
 rule_files:
-  - /etc/prometheus/rules/alerts.yml  
+EOF
 
+# Include Alert Rules Conditionally
+if [ -n "${WALRUS_NODE_TARGET}" ]; then
+  echo "  - /etc/prometheus/rules/walrus_node_alerts.yml" >> /etc/prometheus/prometheus.yml
+fi
+
+if [ -n "${WALRUS_AGGREGATOR_TARGET}" ]; then
+  echo "  - /etc/prometheus/rules/walrus_aggregator_alerts.yml" >> /etc/prometheus/prometheus.yml
+fi
+
+if [ -n "${WALRUS_PUBLISHER_TARGET}" ]; then
+  echo "  - /etc/prometheus/rules/walrus_publisher_alerts.yml" >> /etc/prometheus/prometheus.yml
+fi
+
+# Add Scrape Configurations
+cat <<EOF >> /etc/prometheus/prometheus.yml
 scrape_configs:
   - job_name: 'prometheus'
     static_configs:
@@ -56,46 +71,6 @@ if [ -n "${WALRUS_PUBLISHER_TARGET}" ]; then
       - targets: ['${WALRUS_PUBLISHER_TARGET}']
         labels:
           service: 'publisher'
-EOF
-fi
-
-mkdir -p /etc/prometheus/rules
-
-# Generate alerts configuration
-cat <<EOF > /etc/prometheus/rules/alerts.yml
-groups:
-  - name: walrus_storage_node_alerts
-    rules:
-EOF
-
-if [ -n "${WALRUS_NODE_TARGET}" ]; then
-  cat <<EOF >> /etc/prometheus/rules/alerts.yml
-      - alert: WalrusNodeRestarted
-        expr: increase(uptime{service="storage_node"}[5m]) == 0
-        for: 5m
-        labels:
-          severity: critical
-        annotations:
-          summary: "Walrus Storage Node Restarted"
-          description: "The Walrus Storage Node uptime has not increased in the last 5 minutes, suggesting a restart or failure."
-
-      - alert: EventProcessorCheckpointStuck
-        expr: increase(event_processor_latest_downloaded_checkpoint{service="storage_node"}[5m]) == 0
-        for: 5m
-        labels:
-          severity: critical
-        annotations:
-          summary: "Event Processor Checkpoint Stuck"
-          description: "No new checkpoints have been downloaded in the last 5 minutes on the Walrus Storage Node."
-
-      - alert: PersistedEventsStuck
-        expr: increase(walrus_event_cursor_progress{state="persisted", service="storage_node"}[5m]) == 0
-        for: 5m
-        labels:
-          severity: critical
-        annotations:
-          summary: "Persisted Events Stuck"
-          description: "No new persisted events have been recorded in the last 5 minutes on the Walrus Storage Node."
 EOF
 fi
 

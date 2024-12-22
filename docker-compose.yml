@@ -34,6 +34,7 @@ services:
     volumes:
       - prometheus_data:/prometheus
       - ./prometheus/entrypoint.sh:/entrypoint.sh
+      - ./prometheus/rules:/etc/prometheus/rules
     environment:
       PROMETHEUS_TARGET: ${PROMETHEUS_TARGET:-localhost:9090}
       WALRUS_NODE_TARGET: ${WALRUS_NODE_TARGET:-}
