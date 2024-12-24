@@ -1,20 +1,28 @@
 groups:
   - name: walrus_publisher_alerts
     rules:
-      - alert: HighClientErrorRate
+      - alert: WalrusPublisher_HighClientErrorRate
         expr: sum(rate(http_request_duration_seconds_count{service="publisher", status_code=~"4.."}[5m])) > 10
         for: 5m
         labels:
           severity: warning
+          service: walrus_publisher
+          alert_type: client_error_rate
         annotations:
           summary: "High Client Error Rate Detected on Walrus Publisher"
-          description: "The rate of HTTP client errors (4xx) on the Walrus Publisher has exceeded 10 requests per second for the last 5 minutes, indicating frequent client-side request issues."
+          description: |
+            The rate of HTTP client errors (4xx) on the Walrus Publisher has exceeded 10 requests per second 
+            for the last 5 minutes, indicating frequent client-side request issues.
 
-      - alert: HighServerErrorRate
+      - alert: WalrusPublisher_HighServerErrorRate
         expr: sum(rate(http_request_duration_seconds_count{service="publisher", status_code=~"5.."}[5m])) > 5
         for: 5m
         labels:
           severity: critical
+          service: walrus_publisher
+          alert_type: server_error_rate
         annotations:
           summary: "High Server Error Rate Detected on Walrus Publisher"
-          description: "The rate of HTTP server errors (5xx) on the Walrus Publisher has exceeded 5 requests per second for the last 5 minutes, indicating potential backend issues or failures."
+          description: |
+            The rate of HTTP server errors (5xx) on the Walrus Publisher has exceeded 5 requests per second 
+            for the last 5 minutes, indicating potential backend issues or failures.

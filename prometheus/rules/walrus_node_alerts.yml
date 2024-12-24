@@ -1,38 +1,52 @@
 groups:
   - name: walrus_storage_node_alerts
     rules:
-      - alert: NodeRestarted
+      - alert: WalrusStorageNode_NodeRestarted
         expr: increase(uptime{service="storage_node"}[5m]) == 0
         for: 5m
         labels:
           severity: critical
+          service: walrus_storage_node
+          alert_type: node_restarted
         annotations:
           summary: "Walrus Storage Node Restarted"
-          description: "The Walrus Storage Node uptime has not increased in the last 5 minutes, suggesting a restart or failure."
+          description: |
+            The Walrus Storage Node uptime has not increased in the last 5 minutes, 
+            suggesting a restart or failure.
 
-      - alert: CheckpointsStuck
+      - alert: WalrusStorageNode_CheckpointsStuck
         expr: increase(event_processor_latest_downloaded_checkpoint{service="storage_node"}[5m]) == 0
         for: 5m
         labels:
           severity: critical
+          service: walrus_storage_node
+          alert_type: checkpoints_stuck
         annotations:
           summary: "Checkpoints Stuck"
-          description: "No new checkpoints have been downloaded in the last 5 minutes on the Walrus Storage Node."
+          description: |
+            No new checkpoints have been downloaded in the last 5 minutes on the Walrus Storage Node.
 
-      - alert: PersistedEventsStuck
+      - alert: WalrusStorageNode_PersistedEventsStuck
         expr: increase(walrus_event_cursor_progress{state="persisted", service="storage_node"}[5m]) == 0
         for: 5m
         labels:
           severity: critical
+          service: walrus_storage_node
+          alert_type: persisted_events_stuck
         annotations:
           summary: "Persisted Events Stuck"
-          description: "No new persisted events have been recorded in the last 5 minutes on the Walrus Storage Node."
+          description: |
+            No new persisted events have been recorded in the last 5 minutes on the Walrus Storage Node.
 
-      - alert: ShardsOwnedZero
+      - alert: WalrusStorageNode_ShardsOwnedZero
         expr: walrus_shards_owned{service="storage_node"} == 0
         for: 2m
         labels:
           severity: critical
+          service: walrus_storage_node
+          alert_type: shards_owned_zero
         annotations:
           summary: "No Shards Owned by Walrus Storage Node"
-          description: "The Walrus Storage Node currently owns zero shards, indicating either a failure or that the node has been removed from the active committee set."
+          description: |
+            The Walrus Storage Node currently owns zero shards, indicating either a failure 
+            or that the node has been removed from the active committee set.
