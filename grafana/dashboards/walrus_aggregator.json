@@ -73,7 +73,9 @@
                 "orientation": "auto",
                 "percentChangeColorMode": "standard",
                 "reduceOptions": {
-                    "calcs": ["lastNotNull"],
+                    "calcs": [
+                        "lastNotNull"
+                    ],
                     "fields": "",
                     "values": false
                 },
@@ -104,7 +106,9 @@
             "transformations": [{
                 "id": "labelsToFields",
                 "options": {
-                    "keepLabels": ["version"],
+                    "keepLabels": [
+                        "version"
+                    ],
                     "valueLabel": "version"
                 }
             }],
@@ -154,7 +158,9 @@
                 "orientation": "horizontal",
                 "percentChangeColorMode": "standard",
                 "reduceOptions": {
-                    "calcs": ["lastNotNull"],
+                    "calcs": [
+                        "lastNotNull"
+                    ],
                     "fields": "",
                     "values": false
                 },
@@ -277,7 +283,9 @@
                     "showLegend": true
                 },
                 "showPoints": "auto",
-                "timezone": ["browser"],
+                "timezone": [
+                    "browser"
+                ],
                 "tooltip": {
                     "mode": "single",
                     "sort": "none"
@@ -380,7 +388,9 @@
             "id": 63,
             "options": {
                 "legend": {
-                    "calcs": ["lastNotNull"],
+                    "calcs": [
+                        "lastNotNull"
+                    ],
                     "displayMode": "table",
                     "placement": "right",
                     "showLegend": true
@@ -394,7 +404,7 @@
             "targets": [{
                 "disableTextWrap": false,
                 "editorMode": "code",
-                "expr": "histogram_quantile(0.95, sum by(le, span_name) (rate(tracing_span_latencies_bucket{service=\"aggregator\"}[5m])))",
+                "expr": "histogram_quantile(0.95, sum by(le, span_name) (rate(tracing_span_latencies_bucket{service=\"aggregator\"}[$__rate_interval])))",
                 "fullMetaSearch": false,
                 "includeNullMetadata": true,
                 "legendFormat": "95th percentile - {{span_name}}",
@@ -470,12 +480,16 @@
             "id": 61,
             "options": {
                 "legend": {
-                    "calcs": ["lastNotNull"],
+                    "calcs": [
+                        "lastNotNull"
+                    ],
                     "displayMode": "table",
                     "placement": "right",
                     "showLegend": true
                 },
-                "timezone": ["browser"],
+                "timezone": [
+                    "browser"
+                ],
                 "tooltip": {
                     "mode": "single",
                     "sort": "desc"
@@ -577,7 +591,9 @@
             "id": 39,
             "options": {
                 "legend": {
-                    "calcs": ["lastNotNull"],
+                    "calcs": [
+                        "lastNotNull"
+                    ],
                     "displayMode": "table",
                     "placement": "right",
                     "showLegend": true,
@@ -593,7 +609,7 @@
             "targets": [{
                 "disableTextWrap": false,
                 "editorMode": "builder",
-                "expr": "rate(http_request_duration_seconds_sum{service=\"aggregator\"}[5m]) / rate(http_request_duration_seconds_count{service=\"aggregator\"}[5m])",
+                "expr": "rate(http_request_duration_seconds_sum{service=\"aggregator\"}[$__rate_interval]) / rate(http_request_duration_seconds_count{service=\"aggregator\"}[$__rate_interval])",
                 "fullMetaSearch": false,
                 "includeNullMetadata": true,
                 "legendFormat": "Name: {{method}} {{route}} {{status_code}}",
@@ -619,6 +635,6 @@
     "timezone": "browser",
     "title": "Walrus Aggregator",
     "uid": "de65msz8531moq",
-    "version": 23,
+    "version": 1,
     "weekStart": ""
 }

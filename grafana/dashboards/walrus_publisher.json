@@ -17,7 +17,7 @@
     "editable": true,
     "fiscalYearStartMonth": 0,
     "graphTooltip": 0,
-    "id": 4,
+    "id": 1,
     "links": [],
     "panels": [{
             "collapsed": false,
@@ -404,7 +404,7 @@
                     },
                     "disableTextWrap": false,
                     "editorMode": "builder",
-                    "expr": "increase(wal_refill{service=\"publisher\"}[1h])",
+                    "expr": "increase(wal_refill{service=\"publisher\"}[$__rate_interval])",
                     "fullMetaSearch": false,
                     "includeNullMetadata": true,
                     "legendFormat": "Rate of Refills (per hour)",
@@ -525,7 +525,7 @@
                     },
                     "disableTextWrap": false,
                     "editorMode": "builder",
-                    "expr": "increase(gas_refill{service=\"publisher\"}[1h])",
+                    "expr": "increase(gas_refill{service=\"publisher\"}[$__rate_interval])",
                     "fullMetaSearch": false,
                     "includeNullMetadata": true,
                     "legendFormat": "Rate of Refills (per hour)",
@@ -649,7 +649,7 @@
             "targets": [{
                 "disableTextWrap": false,
                 "editorMode": "builder",
-                "expr": "histogram_quantile(0.95, sum by(le, span_name) (rate(tracing_span_latencies_bucket{service=\"publisher\"}[5m])))",
+                "expr": "histogram_quantile(0.95, sum by(le, span_name) (rate(tracing_span_latencies_bucket{service=\"publisher\"}[$__rate_interval])))",
                 "fullMetaSearch": false,
                 "includeNullMetadata": true,
                 "legendFormat": "95th percentile - {{span_name}}",
@@ -857,7 +857,7 @@
             "targets": [{
                 "disableTextWrap": false,
                 "editorMode": "builder",
-                "expr": "rate(http_request_duration_seconds_sum{service=\"publisher\"}[5m]) / rate(http_request_duration_seconds_count{service=\"publisher\"}[5m])",
+                "expr": "rate(http_request_duration_seconds_sum{service=\"publisher\"}[$__rate_interval]) / rate(http_request_duration_seconds_count{service=\"publisher\"}[$__rate_interval])",
                 "fullMetaSearch": false,
                 "includeNullMetadata": true,
                 "legendFormat": "Name: {{method}} {{route}} {{status_code}}",
@@ -883,6 +883,6 @@
     "timezone": "browser",
     "title": "Walrus Publisher",
     "uid": "de65msz8531moz",
-    "version": 28,
+    "version": 1,
     "weekStart": ""
 }
