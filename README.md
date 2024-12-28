@@ -62,6 +62,8 @@ TELEGRAM_CHAT_ID=<your-telegram-chat-id>
 DISCORD_WEBHOOK_URL=<your-discord-webhook-url>
 ```
 
+> **Note:** If your targets (`WALRUS_NODE_TARGET`, `WALRUS_AGGREGATOR_TARGET`, `WALRUS_PUBLISHER_TARGET`) are HTTPS endpoints, make sure to include the `https://` protocol explicitly in the variable, e.g., `WALRUS_NODE_TARGET=https://node.example.com`.
+
 ---
 
 ### **4. Start the Services**
