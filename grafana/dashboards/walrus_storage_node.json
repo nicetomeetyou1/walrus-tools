@@ -17,7 +17,7 @@
     "editable": true,
     "fiscalYearStartMonth": 0,
     "graphTooltip": 0,
-    "id": 2,
+    "id": 3,
     "links": [],
     "panels": [{
             "collapsed": false,
@@ -1654,7 +1654,7 @@
             "datasource": {
                 "uid": "ctibdrobbprrc6ulkutg"
             },
-            "description": "Displays a summary of shard statuses, including the number of owned, unknown, ready, in-transfer, in-recovery, and read-only shards.",
+            "description": "Displays a summary of owned and read-only shard statuses.",
             "fieldConfig": {
                 "defaults": {
                     "color": {
@@ -1664,7 +1664,8 @@
                     "thresholds": {
                         "mode": "absolute",
                         "steps": [{
-                                "color": "green"
+                                "color": "green",
+                                "value": null
                             },
                             {
                                 "color": "red",
@@ -1677,11 +1678,11 @@
             },
             "gridPos": {
                 "h": 5,
-                "w": 24,
+                "w": 9,
                 "x": 0,
                 "y": 52
             },
-            "id": 65,
+            "id": 67,
             "options": {
                 "colorMode": "value",
                 "graphMode": "area",
@@ -1704,26 +1705,6 @@
                 "columns": [{
                         "selector": "data.shardSummary.owned",
                         "text": "Owned",
-                        "type": "number"
-                    },
-                    {
-                        "selector": "data.shardSummary.unknown",
-                        "text": "Unknown",
-                        "type": "number"
-                    },
-                    {
-                        "selector": "data.shardSummary.ready",
-                        "text": "Ready",
-                        "type": "number"
-                    },
-                    {
-                        "selector": "data.shardSummary.inTransfer",
-                        "text": "In Transfer",
-                        "type": "number"
-                    },
-                    {
-                        "selector": "data.shardSummary.inRecovery",
-                        "text": "In Recovery",
                         "type": "number"
                     },
                     {
@@ -1754,6 +1735,99 @@
         },
         {
             "datasource": {
+                "uid": "ctibdrobbprrc6ulkutg"
+            },
+            "description": "Displays the statuses of owned shards.",
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "thresholds"
+                    },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [{
+                                "color": "green",
+                                "value": null
+                            },
+                            {
+                                "color": "red",
+                                "value": 80
+                            }
+                        ]
+                    }
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 5,
+                "w": 15,
+                "x": 9,
+                "y": 52
+            },
+            "id": 66,
+            "options": {
+                "colorMode": "value",
+                "graphMode": "area",
+                "justifyMode": "auto",
+                "orientation": "auto",
+                "percentChangeColorMode": "standard",
+                "reduceOptions": {
+                    "calcs": [
+                        "lastNotNull"
+                    ],
+                    "fields": "",
+                    "values": false
+                },
+                "showPercentChange": false,
+                "textMode": "auto",
+                "wideLayout": true
+            },
+            "pluginVersion": "11.4.0",
+            "targets": [{
+                "columns": [{
+                        "selector": "data.shardSummary.ownedShardStatus.unknown",
+                        "text": "Unknown",
+                        "type": "number"
+                    },
+                    {
+                        "selector": "data.shardSummary.ownedShardStatus.ready",
+                        "text": "Ready",
+                        "type": "number"
+                    },
+                    {
+                        "selector": "data.shardSummary.ownedShardStatus.inTransfer",
+                        "text": "In Transfer",
+                        "type": "number"
+                    },
+                    {
+                        "selector": "data.shardSummary.ownedShardStatus.inRecovery",
+                        "text": "In Recovery",
+                        "type": "number"
+                    }
+                ],
+                "filters": [],
+                "format": "table",
+                "global_query_id": "",
+                "json_options": {
+                    "columnar": false,
+                    "root_is_not_array": true
+                },
+                "refId": "A",
+                "root_selector": "$.*",
+                "source": "url",
+                "type": "json",
+                "url": "",
+                "url_options": {
+                    "data": "",
+                    "method": "GET"
+                }
+            }],
+            "title": "Shard Status",
+            "type": "stat"
+        },
+        {
+            "datasource": {
                 "type": "prometheus",
                 "uid": "be65m7mkyeh34c"
             },
@@ -1768,7 +1842,8 @@
                     "thresholds": {
                         "mode": "absolute",
                         "steps": [{
-                            "color": "green"
+                            "color": "green",
+                            "value": null
                         }]
                     },
                     "unit": "bytes"
@@ -1825,7 +1900,8 @@
                     "thresholds": {
                         "mode": "absolute",
                         "steps": [{
-                            "color": "green"
+                            "color": "green",
+                            "value": null
                         }]
                     },
                     "unit": "none"
@@ -1883,7 +1959,8 @@
                     "thresholds": {
                         "mode": "absolute",
                         "steps": [{
-                                "color": "red"
+                                "color": "red",
+                                "value": null
                             },
                             {
                                 "color": "green",
@@ -1945,7 +2022,8 @@
                     "thresholds": {
                         "mode": "absolute",
                         "steps": [{
-                                "color": "red"
+                                "color": "red",
+                                "value": null
                             },
                             {
                                 "color": "green",
@@ -2039,7 +2117,8 @@
                     "thresholds": {
                         "mode": "absolute",
                         "steps": [{
-                            "color": "blue"
+                            "color": "blue",
+                            "value": null
                         }]
                     },
                     "unit": "none"
@@ -2146,7 +2225,8 @@
                     "thresholds": {
                         "mode": "absolute",
                         "steps": [{
-                            "color": "green"
+                            "color": "green",
+                            "value": null
                         }]
                     },
                     "unit": "none"
@@ -2239,7 +2319,8 @@
                     "thresholds": {
                         "mode": "absolute",
                         "steps": [{
-                            "color": "blue"
+                            "color": "blue",
+                            "value": null
                         }]
                     },
                     "unit": "none"
@@ -2304,7 +2385,8 @@
                     "thresholds": {
                         "mode": "absolute",
                         "steps": [{
-                                "color": "green"
+                                "color": "green",
+                                "value": null
                             },
                             {
                                 "color": "yellow",
@@ -2374,7 +2456,8 @@
                     "thresholds": {
                         "mode": "absolute",
                         "steps": [{
-                                "color": "green"
+                                "color": "green",
+                                "value": null
                             },
                             {
                                 "color": "yellow",
@@ -2481,7 +2564,8 @@
                     "thresholds": {
                         "mode": "absolute",
                         "steps": [{
-                                "color": "green"
+                                "color": "green",
+                                "value": null
                             },
                             {
                                 "color": "yellow",
@@ -2589,7 +2673,8 @@
                     "thresholds": {
                         "mode": "absolute",
                         "steps": [{
-                                "color": "green"
+                                "color": "green",
+                                "value": null
                             },
                             {
                                 "color": "yellow",
@@ -2709,7 +2794,8 @@
                     "thresholds": {
                         "mode": "absolute",
                         "steps": [{
-                                "color": "green"
+                                "color": "green",
+                                "value": null
                             },
                             {
                                 "color": "yellow",
@@ -2844,7 +2930,8 @@
                     "thresholds": {
                         "mode": "absolute",
                         "steps": [{
-                            "color": "green"
+                            "color": "green",
+                            "value": null
                         }]
                     },
                     "unit": "hits"
@@ -2960,7 +3047,8 @@
                     "thresholds": {
                         "mode": "absolute",
                         "steps": [{
-                            "color": "green"
+                            "color": "green",
+                            "value": null
                         }]
                     },
                     "unit": "Bps"
@@ -3073,7 +3161,8 @@
                     "thresholds": {
                         "mode": "absolute",
                         "steps": [{
-                            "color": "blue"
+                            "color": "blue",
+                            "value": null
                         }]
                     },
                     "unit": "decbytes"
@@ -3186,7 +3275,8 @@
                     "thresholds": {
                         "mode": "absolute",
                         "steps": [{
-                            "color": "blue"
+                            "color": "blue",
+                            "value": null
                         }]
                     },
                     "unit": "none"
@@ -3291,7 +3381,8 @@
                     "thresholds": {
                         "mode": "absolute",
                         "steps": [{
-                            "color": "blue"
+                            "color": "blue",
+                            "value": null
                         }]
                     },
                     "unit": "s"
