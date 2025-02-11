@@ -60,6 +60,9 @@ TELEGRAM_CHAT_ID=<your-telegram-chat-id>
 
 # Discord Integration
 DISCORD_WEBHOOK_URL=<your-discord-webhook-url>
+
+# Slack Integration
+SLACK_WEBHOOK_URL=<your-slack-webhook-url>
 ```
 
 > **Note:** If your targets (`WALRUS_NODE_TARGET`, `WALRUS_AGGREGATOR_TARGET`, `WALRUS_PUBLISHER_TARGET`) are HTTPS endpoints, make sure to include the `https://` protocol explicitly in the variable, e.g., `WALRUS_NODE_TARGET=https://node.example.com`.
@@ -162,6 +165,7 @@ Alerts are dynamically routed to the following targets based on `.env` variables
 - **PagerDuty**: Integrated via `PAGERDUTY_INTEGRATION_KEY`.  
 - **Telegram**: Configured using `TELEGRAM_BOT_TOKEN` and `TELEGRAM_CHAT_ID`.  
 - **Discord**: Enabled using `DISCORD_WEBHOOK_URL`.
+- **Slack**: Enabled using `SLACK_WEBHOOK_URL`.
 
 ---
 
