@@ -43,6 +43,15 @@ if [ -n "${DISCORD_WEBHOOK_URL}" ]; then
 EOF
 fi
 
+# Add Slack Receiver if Slack Webhook is Set
+if [ -n "${SLACK_WEBHOOK_URL}" ]; then
+  echo "Adding Slack receiver..."
+  cat <<EOF >> /etc/alertmanager/alertmanager.yml
+    - receiver: "slack"
+      continue: true
+EOF
+fi
+
 # Receivers section
 cat <<EOF >> /etc/alertmanager/alertmanager.yml
 receivers:
@@ -81,6 +90,17 @@ if [ -n "${DISCORD_WEBHOOK_URL}" ]; then
   - name: "discord"
     discord_configs:
       - webhook_url: "${DISCORD_WEBHOOK_URL}"
+        send_resolved: true
+EOF
+fi
+
+# Add Slack integration if Slack Webhook is Set
+if [ -n "${SLACK_WEBHOOK_URL}" ]; then
+  echo "Adding Slack receiver..."
+  cat <<EOF >> /etc/alertmanager/alertmanager.yml
+  - name: "slack"
+    slack_configs:
+      - api_url: "${SLACK_WEBHOOK_URL}"
         send_resolved: true
 EOF
 fi
