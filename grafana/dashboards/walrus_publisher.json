@@ -119,202 +119,6 @@
                 "type": "prometheus",
                 "uid": "be65m7mkyeh34c"
             },
-            "description": "Displays the current epoch number in the Walrus network, indicating the network's operational state.",
-            "fieldConfig": {
-                "defaults": {
-                    "color": {
-                        "mode": "thresholds"
-                    },
-                    "fieldMinMax": false,
-                    "mappings": [],
-                    "min": 0,
-                    "thresholds": {
-                        "mode": "absolute",
-                        "steps": [{
-                                "color": "red",
-                                "value": null
-                            },
-                            {
-                                "color": "green",
-                                "value": 1
-                            }
-                        ]
-                    },
-                    "unit": "none"
-                },
-                "overrides": []
-            },
-            "gridPos": {
-                "h": 5,
-                "w": 6,
-                "x": 6,
-                "y": 1
-            },
-            "id": 43,
-            "options": {
-                "colorMode": "value",
-                "graphMode": "none",
-                "justifyMode": "center",
-                "orientation": "horizontal",
-                "percentChangeColorMode": "standard",
-                "reduceOptions": {
-                    "calcs": [
-                        "lastNotNull"
-                    ],
-                    "fields": "",
-                    "values": false
-                },
-                "showPercentChange": false,
-                "textMode": "value",
-                "wideLayout": false
-            },
-            "pluginVersion": "11.4.0",
-            "targets": [{
-                "datasource": {
-                    "type": "prometheus",
-                    "uid": "be65m7mkyeh34c"
-                },
-                "disableTextWrap": false,
-                "editorMode": "builder",
-                "expr": "max(walrus_current_epoch{service=\"publisher\"})",
-                "fullMetaSearch": false,
-                "includeNullMetadata": true,
-                "legendFormat": "",
-                "range": true,
-                "refId": "A",
-                "useBackend": false
-            }],
-            "title": "Current Epoch",
-            "type": "stat"
-        },
-        {
-            "datasource": {
-                "type": "prometheus",
-                "uid": "be65m7mkyeh34c"
-            },
-            "description": "Displays the timeline of Walrus Publisher epoch states, highlighting transitions between inactive (0) and active (1) statuses.",
-            "fieldConfig": {
-                "defaults": {
-                    "color": {
-                        "mode": "palette-classic"
-                    },
-                    "custom": {
-                        "axisBorderShow": false,
-                        "axisCenteredZero": false,
-                        "axisColorMode": "text",
-                        "axisGridShow": true,
-                        "axisLabel": "",
-                        "axisPlacement": "auto",
-                        "axisSoftMax": 1,
-                        "axisSoftMin": 0,
-                        "barAlignment": 0,
-                        "barWidthFactor": 1,
-                        "drawStyle": "bars",
-                        "fillOpacity": 100,
-                        "gradientMode": "hue",
-                        "hideFrom": {
-                            "legend": false,
-                            "tooltip": false,
-                            "viz": false
-                        },
-                        "insertNulls": false,
-                        "lineInterpolation": "linear",
-                        "lineWidth": 1,
-                        "pointSize": 5,
-                        "scaleDistribution": {
-                            "log": 10,
-                            "type": "symlog"
-                        },
-                        "showPoints": "auto",
-                        "spanNulls": false,
-                        "stacking": {
-                            "group": "A",
-                            "mode": "none"
-                        },
-                        "thresholdsStyle": {
-                            "mode": "off"
-                        }
-                    },
-                    "mappings": [{
-                        "options": {
-                            "0": {
-                                "index": 1
-                            },
-                            "1": {
-                                "index": 0,
-                                "text": "State"
-                            }
-                        },
-                        "type": "value"
-                    }],
-                    "thresholds": {
-                        "mode": "absolute",
-                        "steps": [{
-                                "color": "red",
-                                "value": null
-                            },
-                            {
-                                "color": "green",
-                                "value": 1
-                            }
-                        ]
-                    },
-                    "unit": "none"
-                },
-                "overrides": []
-            },
-            "gridPos": {
-                "h": 5,
-                "w": 12,
-                "x": 12,
-                "y": 1
-            },
-            "id": 4,
-            "options": {
-                "fieldOptions": {
-                    "calcs": [],
-                    "values": false
-                },
-                "graphMode": "line",
-                "legend": {
-                    "calcs": [],
-                    "displayMode": "list",
-                    "placement": "bottom",
-                    "showLegend": true
-                },
-                "showPoints": "auto",
-                "timezone": [
-                    "browser"
-                ],
-                "tooltip": {
-                    "mode": "single",
-                    "sort": "none"
-                }
-            },
-            "pluginVersion": "11.4.0",
-            "targets": [{
-                "datasource": {
-                    "type": "prometheus",
-                    "uid": "be65m7mkyeh34c"
-                },
-                "disableTextWrap": false,
-                "editorMode": "builder",
-                "expr": "walrus_current_epoch_state{service=\"publisher\"}",
-                "fullMetaSearch": false,
-                "includeNullMetadata": true,
-                "legendFormat": "{{state}}",
-                "range": true,
-                "refId": "A",
-                "useBackend": false
-            }],
-            "title": "Epoch State Timeline",
-            "type": "timeseries"
-        },
-        {
-            "datasource": {
-                "type": "prometheus",
-                "uid": "be65m7mkyeh34c"
-            },
             "description": "Visualizes the total number of wal refills over time and their cumulative counter.",
             "fieldConfig": {
                 "defaults": {
@@ -369,9 +173,9 @@
             },
             "gridPos": {
                 "h": 5,
-                "w": 12,
-                "x": 0,
-                "y": 6
+                "w": 9,
+                "x": 6,
+                "y": 1
             },
             "id": 19,
             "options": {
@@ -490,9 +294,9 @@
             },
             "gridPos": {
                 "h": 5,
-                "w": 12,
-                "x": 12,
-                "y": 6
+                "w": 9,
+                "x": 15,
+                "y": 1
             },
             "id": 65,
             "options": {
@@ -558,7 +362,7 @@
                 "h": 1,
                 "w": 24,
                 "x": 0,
-                "y": 11
+                "y": 6
             },
             "id": 59,
             "panels": [],
@@ -625,7 +429,7 @@
                 "h": 9,
                 "w": 24,
                 "x": 0,
-                "y": 12
+                "y": 7
             },
             "id": 63,
             "options": {
@@ -720,7 +524,7 @@
                 "h": 9,
                 "w": 24,
                 "x": 0,
-                "y": 21
+                "y": 16
             },
             "id": 61,
             "options": {
@@ -761,7 +565,7 @@
                 "h": 1,
                 "w": 24,
                 "x": 0,
-                "y": 30
+                "y": 25
             },
             "id": 62,
             "panels": [],
@@ -831,7 +635,7 @@
                 "h": 11,
                 "w": 24,
                 "x": 0,
-                "y": 31
+                "y": 26
             },
             "id": 39,
             "options": {
