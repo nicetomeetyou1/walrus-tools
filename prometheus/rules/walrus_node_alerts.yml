@@ -1,22 +1,22 @@
 groups:
   - name: walrus_storage_node_alerts
     rules:
-      - alert: WalrusStorageNode_NodeRestarted
-        expr: increase(uptime{service="storage_node"}[5m]) == 0
+      - alert: WalrusStorageNode_NodeCrashed
+        expr: increase(uptime{service="storage_node"}[5m]) == 0 or absent(uptime{service="storage_node"})
         for: 5m
         labels:
           severity: critical
           service: walrus_storage_node
-          alert_type: node_restarted
+          alert_type: node_crashed
         annotations:
-          summary: "Walrus Storage Node Restarted"
+          summary: "Walrus Storage Node Crashed"
           description: |
-            The Walrus Storage Node uptime has not increased in the last 5 minutes, 
-            suggesting a restart or failure.
+            The Walrus Storage Node uptime has not increased in the last 5 minutes or the metric is absent,
+            indicating a crash or complete failure.
 
       - alert: WalrusStorageNode_CheckpointsStuck
-        expr: increase(event_processor_latest_downloaded_checkpoint{service="storage_node"}[5m]) == 0
-        for: 5m
+        expr: increase(event_processor_latest_downloaded_checkpoint{service="storage_node"}[15m]) == 0 or absent(event_processor_latest_downloaded_checkpoint{service="storage_node"})
+        for: 15m
         labels:
           severity: critical
           service: walrus_storage_node
@@ -24,11 +24,12 @@ groups:
         annotations:
           summary: "Checkpoints Stuck"
           description: |
-            No new checkpoints have been downloaded in the last 5 minutes on the Walrus Storage Node.
+            No new checkpoints have been downloaded in the last 15 minutes on the Walrus Storage Node,
+            or the metric is unavailable, suggesting a processing stall or failure.
 
       - alert: WalrusStorageNode_PersistedEventsStuck
-        expr: increase(walrus_event_cursor_progress{state="persisted", service="storage_node"}[5m]) == 0
-        for: 5m
+        expr: increase(walrus_event_cursor_progress{state="persisted", service="storage_node"}[15m]) == 0 or absent(walrus_event_cursor_progress{state="persisted", service="storage_node"})
+        for: 15m
         labels:
           severity: critical
           service: walrus_storage_node
@@ -36,11 +37,12 @@ groups:
         annotations:
           summary: "Persisted Events Stuck"
           description: |
-            No new persisted events have been recorded in the last 5 minutes on the Walrus Storage Node.
+            No new persisted events have been recorded in the last 15 minutes on the Walrus Storage Node,
+            or the metric is unavailable, indicating a persistence stall or failure.
 
       - alert: WalrusStorageNode_ShardsOwnedZero
-        expr: walrus_shards_owned{service="storage_node"} == 0
-        for: 2m
+        expr: walrus_shards_owned{service="storage_node"} == 0 or absent(walrus_shards_owned{service="storage_node"})
+        for: 5m
         labels:
           severity: critical
           service: walrus_storage_node
@@ -48,5 +50,5 @@ groups:
         annotations:
           summary: "No Shards Owned by Walrus Storage Node"
           description: |
-            The Walrus Storage Node currently owns zero shards, indicating either a failure 
-            or that the node has been removed from the active committee set.
+            The Walrus Storage Node currently owns zero shards or the metric is absent,
+            indicating either a failure or removal from the active committee set.
