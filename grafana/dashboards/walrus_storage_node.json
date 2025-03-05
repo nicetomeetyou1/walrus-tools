@@ -848,7 +848,7 @@
                     "uid": "be65m7mkyeh34c"
                 },
                 "editorMode": "code",
-                "expr": "event_processor_total_downloaded_checkpoints{service=\"storage_node\"}",
+                "expr": "walrus_event_processor_total_downloaded_checkpoints{service=\"storage_node\"}",
                 "legendFormat": "",
                 "range": false,
                 "refId": "A"
@@ -916,7 +916,7 @@
                     "uid": "be65m7mkyeh34c"
                 },
                 "editorMode": "code",
-                "expr": "event_processor_latest_downloaded_checkpoint{service=\"storage_node\"}",
+                "expr": "walrus_event_processor_latest_downloaded_checkpoint{service=\"storage_node\"}",
                 "legendFormat": "",
                 "range": false,
                 "refId": "A"
@@ -1110,7 +1110,7 @@
                     "uid": "be65m7mkyeh34c"
                 },
                 "editorMode": "code",
-                "expr": "event_processor_latest_downloaded_checkpoint{service=\"storage_node\"}",
+                "expr": "walrus_event_processor_latest_downloaded_checkpoint{service=\"storage_node\"}",
                 "legendFormat": "Latest Checkpoint",
                 "range": true,
                 "refId": "A"

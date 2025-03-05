@@ -15,7 +15,7 @@ groups:
             indicating a crash or complete failure.
 
       - alert: WalrusStorageNode_CheckpointsStuck
-        expr: increase(event_processor_latest_downloaded_checkpoint{service="storage_node"}[15m]) == 0 or absent(event_processor_latest_downloaded_checkpoint{service="storage_node"})
+        expr: increase(walrus_event_processor_latest_downloaded_checkpoint{service="storage_node"}[15m]) == 0 or absent(walrus_event_processor_latest_downloaded_checkpoint{service="storage_node"})
         for: 15m
         labels:
           severity: critical
