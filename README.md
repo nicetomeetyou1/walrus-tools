@@ -11,7 +11,7 @@ This repository contains configurations and tools for monitoring and managing th
 ### **1. Clone the Repository**
 
 ```bash
-git clone https://github.com/walrus-network/walrus-tools.git
+git clone https://github.com/bartosian/walrus-tools.git
 ```
 
 ### **2. Navigate to the Directory**
